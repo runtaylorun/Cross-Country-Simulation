@@ -1,0 +1,19 @@
+table {
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-top: 150px;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid grey;
+    padding: 3px;
+}
+
+thead {
+    background-color: #96181e;
+}
+
+tr:nth-child(2n) {
+    background-color: #f0f0f0;
+}

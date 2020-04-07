@@ -1,0 +1,92 @@
+{
+    "Tigers Home Course":
+    {
+        "Terrain": [
+            "Rolling Hills",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Hilly",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Flat",
+            "Flat"
+        ]
+    },
+    "Redhawks Home Course":
+    {
+        "Terrain": [
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Flat",
+            "Flat",
+            "flat",
+            "Flat",
+            "Flat"
+        ]
+    },
+    "Minutemen Home Course":
+    {
+        "Terrain": [
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Hilly",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Hilly"
+        ]
+    },
+    "Warriors Home Course":
+    {
+        "Terrain": [
+            "Flat",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Rolling Hills",
+            "Flat"
+        ]
+    },
+    "Panthers Home Course":
+    {
+        "Terrain": [
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Rolling Hills",
+            "Flat",
+            "Hilly",
+            "Hilly",
+            "Flat"
+        ]
+    },
+    "Pilgrims Home Course":
+    {
+        "Terrain": [
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Flat",
+            "Rolling Hills",
+            "Rolling Hills",
+            "Flat",
+            "Flat"
+        ]
+    }
+}
