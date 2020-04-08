@@ -3,6 +3,10 @@ import Player from "./Player/player"
 import GenerateOverall from './Player/RatingGeneration';
 var Roster = []
 
+const NewGame = () => {
+    GenerateRoster();
+}
+
 const GenerateRoster = () => {
 
     for(let i = 0; i < 10; i++)
@@ -21,8 +25,6 @@ const GenerateRoster = () => {
 
     AddRosterToDatabase(Roster);
 
-
-    return Roster
 }
 
 const AddRosterToDatabase = (roster) => {
@@ -48,4 +50,4 @@ const GenerateRandomNumber = (maxNum) => {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-export default GenerateRoster;
+export default NewGame;
