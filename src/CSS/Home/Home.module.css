@@ -1,0 +1,19 @@
+* {
+    text-align: center;
+}
+
+.container > {
+    border: 1px solid black;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.block {
+    width: 30%;
+    border: 2px solid black;
+    margin-bottom: 25px;
+}

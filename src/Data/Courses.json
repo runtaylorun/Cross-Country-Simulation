@@ -1,92 +1,132 @@
 {
-    "Tigers Home Course":
-    {
-        "Terrain": [
-            "Rolling Hills",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Hilly",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Flat",
-            "Flat"
-        ]
-    },
-    "Redhawks Home Course":
-    {
-        "Terrain": [
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Flat",
-            "Flat",
-            "flat",
-            "Flat",
-            "Flat"
-        ]
-    },
-    "Minutemen Home Course":
-    {
-        "Terrain": [
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Hilly",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Hilly"
-        ]
-    },
-    "Warriors Home Course":
-    {
-        "Terrain": [
-            "Flat",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Rolling Hills",
-            "Flat"
-        ]
-    },
-    "Panthers Home Course":
-    {
-        "Terrain": [
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Rolling Hills",
-            "Flat",
-            "Hilly",
-            "Hilly",
-            "Flat"
-        ]
-    },
-    "Pilgrims Home Course":
-    {
-        "Terrain": [
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Flat",
-            "Rolling Hills",
-            "Rolling Hills",
-            "Flat",
-            "Flat"
-        ]
-    }
+	"Courses": [
+		{
+			"courseId": 1,
+			"name": "Southern Indiana Home Course",
+			"terrain": [
+				"Rolling Hills",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Hilly",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Flat",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 2,
+			"name": "Indianapolis Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Flat",
+				"Flat",
+				"flat",
+				"Flat",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 3,
+			"name": "Bellarmine Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Hilly",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Hilly"
+			]
+		},
+		{
+			"courseId": 4,
+			"name": "Southwest Baptist Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Rolling Hills",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 5,
+			"name": "Lewis Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Rolling Hills",
+				"Flat",
+				"Hilly",
+				"Hilly",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 6,
+			"name": "Drury Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Rolling Hills",
+				"Flat",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 7,
+			"name": "Illinois Springfield Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Rolling Hills",
+				"Flat",
+				"Flat"
+			]
+		},
+		{
+			"courseId": 8,
+			"name": "Truman State Home Course",
+			"terrain": [
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Flat",
+				"Rolling Hills",
+				"Rolling Hills",
+				"Flat",
+				"Flat"
+			]
+		}
+	]
 }
