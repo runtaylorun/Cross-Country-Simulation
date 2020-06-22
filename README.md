@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Design Choice
+
+Rather than using a backend api that communicates with a database, I decided to go with indexedDB so that the client takes care of everything and it will greatly reduce waiting times. Not only that, but it will also pretty much erase any potential upkeep costs.
