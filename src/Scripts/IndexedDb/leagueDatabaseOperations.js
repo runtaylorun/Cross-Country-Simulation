@@ -13,7 +13,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			db.createObjectStore('Runners', { autoIncrement: true });
 			db.createObjectStore('Teams', { keyPath: 'teamId' });
 			db.createObjectStore('Courses', { keyPath: 'courseId' });
-			db.createObjectStore('Schedule', { keyPath: 'week' });
+			db.createObjectStore('Schedule', { keyPath: 'weekNumber' });
 			db.createObjectStore('User', { autoIncrement: true });
 		};
 
@@ -36,6 +36,12 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			userStore.add({ ...selectedTeam });
 
 			const schedule = generateSchedule(Teams.Teams);
+
+			let scheduleTransaction = db.transaction('Schedule', 'readwrite');
+			let scheduleStore = scheduleTransaction.objectStore('Schedule');
+			schedule.forEach((week) => {
+				scheduleStore.add(week);
+			});
 
 			let runnerTransaction = db.transaction('Runners', 'readwrite');
 			let runnerStore = runnerTransaction.objectStore('Runners');

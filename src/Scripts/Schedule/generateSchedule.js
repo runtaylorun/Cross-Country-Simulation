@@ -1,56 +1,67 @@
 export const generateSchedule = (teams) => {
 	const weeksInSeason = 8;
-	const schedule = [];
+	const leagueSchedule = initializeLeagueSchedule(weeksInSeason);
 	const weeks = [[], [], [], [], [], [], [], []];
-	const teamMap = new Map();
+	// Until I can find the most descriptive name possible, this mapOfTeams holds a seperate map for each team to keep track of who they are already scheduled to play in a season
+	const mapOfTeams = createMapOfTeams(teams);
 	console.log('teams', teams);
-
-	teams.forEach((team) => {
-		teamMap.set(team.teamId, new Map());
-	});
 
 	for (let i = 0; i < weeksInSeason; i++) {
 		teams.forEach((team) => {
 			console.log(`Currently on ${team.name} Looking at week ${i + 1}`);
-			let currentMap = teamMap.get(team.teamId);
+			let currentTeamsScheduledOpponents = mapOfTeams.get(team.teamId);
 
+			// Checks if the current team is equal to the team at index i and moves on to the next team so that they dont schedule themselves
 			if (team.teamId === teams[i].teamId) {
-				console.log(`Moving to next team, ${team.name} cant schedule themselves`);
+				console.log(
+					`Moving to next team, ${team.name} cant schedule themselves`
+				);
 				return;
 			}
 
+			// Moves on if the currently selected team already plays this week so no team plays more than once per week
 			if (teamPlaysThisWeek(team.teamId, weeks[i])) {
 				console.log(`Exited early ${team.name} already plays this week`);
 				return;
 			}
 
+			// If the team at index i meets any of the following conditions then we need to enter a loop to find the next valid team
 			if (
-				currentMap.has(teams[i].teamId) ||
+				currentTeamsScheduledOpponents.has(teams[i].teamId) ||
 				teamPlaysThisWeek(teams[i].teamId, weeks[i]) ||
-				appearsOnOtherTeamsSchedule(teamMap.get(teams[i].teamId), team.teamId)
+				currentTeamAppearsOnOtherTeamsSchedule(
+					mapOfTeams.get(teams[i].teamId),
+					team.teamId
+				)
 			) {
-				if (teamPlaysThisWeek(team.teamId, weeks[i])) {
-					return;
-				}
-				console.log(`${teams[i].name} is already playing this week or already plays ${team.name}`);
 				let q = 0;
+				// This loop will go over each team so that we can find the next valid matchup
 				while (q < weeksInSeason) {
 					if (
-						currentMap.has(teams[q].teamId) ||
+						currentTeamsScheduledOpponents.has(teams[q].teamId) ||
 						teamPlaysThisWeek(team.teamId, weeks[i]) ||
 						teamPlaysThisWeek(teams[q].teamId, weeks[i]) ||
-						appearsOnOtherTeamsSchedule(teamMap.get(teams[q].teamId), team.teamId) ||
+						currentTeamAppearsOnOtherTeamsSchedule(
+							mapOfTeams.get(teams[q].teamId),
+							team.teamId
+						) ||
 						team.teamId === teams[q].teamId
 					) {
-						console.log(`${team.name} vs ${teams[q].name} is not a valid matchup`);
+						console.log(
+							`${team.name} vs ${teams[q].name} is not a valid matchup`
+						);
 						q++;
 						continue;
 					} else {
-						console.log(`Adding ${team.name} vs ${teams[q].name} to the schedule`);
-						let otherMap = teamMap.get(teams[q].teamId);
-						otherMap.set(team.teamId, team);
-						schedule.push(createRace(team, teams[q], i + 1));
-						currentMap.set(teams[q].teamId, teams[q]);
+						console.log(
+							`Adding ${team.name} vs ${teams[q].name} to the schedule`
+						);
+						let otherTeamsMap = mapOfTeams.get(teams[q].teamId);
+						otherTeamsMap.set(team.teamId, team);
+						leagueSchedule[i].racesThisWeek.push(
+							createRace(team, teams[q], i + 1)
+						);
+						currentTeamsScheduledOpponents.set(teams[q].teamId, teams[q]);
 						weeks[i].push(team);
 						weeks[i].push(teams[q]);
 						break;
@@ -58,17 +69,19 @@ export const generateSchedule = (teams) => {
 				}
 			} else {
 				console.log(`Adding ${team.name} vs ${teams[i].name} to the schedule`);
-				let otherMap = teamMap.get(teams[i].teamId);
-				schedule.push(createRace(team, teams[i], i + 1));
-				otherMap.set(team.teamId, team);
-				currentMap.set(teams[i].teamId, teams[i]);
+				let otherTeamsMap = mapOfTeams.get(teams[i].teamId);
+				leagueSchedule[i].racesThisWeek.push(createRace(team, teams[i], i + 1));
+				otherTeamsMap.set(team.teamId, team);
+				currentTeamsScheduledOpponents.set(teams[i].teamId, teams[i]);
 				weeks[i].push(team);
 				weeks[i].push(teams[i]);
 			}
 		});
 	}
 	console.log(weeks);
-	console.log('schedule', schedule);
+	console.log('schedule', leagueSchedule);
+
+	return leagueSchedule;
 };
 
 const createRace = (team1, team2, week) => {
@@ -86,7 +99,7 @@ const createRace = (team1, team2, week) => {
 	});
 }; */
 
-const appearsOnOtherTeamsSchedule = (otherMap, currentTeamId) => {
+const currentTeamAppearsOnOtherTeamsSchedule = (otherMap, currentTeamId) => {
 	return otherMap.has(currentTeamId) ? true : false;
 };
 
@@ -96,4 +109,26 @@ const teamPlaysThisWeek = (teamId, week) => {
 	} else {
 		return false;
 	}
+};
+
+const createMapOfTeams = (teams) => {
+	const map = new Map();
+	teams.forEach((team) => {
+		map.set(team.teamId, new Map());
+	});
+
+	return map;
+};
+
+const initializeLeagueSchedule = (weeksInSeason) => {
+	const schedule = [];
+
+	for (let i = 0; i < weeksInSeason; i++) {
+		schedule.push({
+			weekNumber: i + 1,
+			racesThisWeek: [],
+		});
+	}
+
+	return schedule;
 };
