@@ -1,5 +1,6 @@
 import Initialize from '../init';
 import Teams from '../../Data/Teams.json';
+import { generateSchedule } from '../Schedule/generateSchedule';
 import Courses from '../../Data/Courses.json';
 
 export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
@@ -12,6 +13,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			db.createObjectStore('Runners', { autoIncrement: true });
 			db.createObjectStore('Teams', { keyPath: 'teamId' });
 			db.createObjectStore('Courses', { keyPath: 'courseId' });
+			db.createObjectStore('Schedule', { keyPath: 'weekNumber' });
 			db.createObjectStore('User', { autoIncrement: true });
 		};
 
@@ -32,6 +34,14 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			let userStore = userTransaction.objectStore('User');
 
 			userStore.add({ ...selectedTeam });
+
+			const schedule = generateSchedule(Teams.Teams);
+
+			let scheduleTransaction = db.transaction('Schedule', 'readwrite');
+			let scheduleStore = scheduleTransaction.objectStore('Schedule');
+			schedule.forEach((week) => {
+				scheduleStore.add(week);
+			});
 
 			let runnerTransaction = db.transaction('Runners', 'readwrite');
 			let runnerStore = runnerTransaction.objectStore('Runners');

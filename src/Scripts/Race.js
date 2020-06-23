@@ -28,6 +28,7 @@ export const simulateRace = async (leagueName) => {
 
 	team1.forEach((runner) => formatTime(runner));
 	team2.forEach((runner) => formatTime(runner));
+	setPlacing(results);
 	console.log(results);
 
 	//const results = [...team1, ...team2];
@@ -56,6 +57,14 @@ const formatTime = (runner) => {
 	const time = new Date(0);
 	time.setSeconds(runner.time);
 	runner.time = time.toISOString().substr(14, 5);
+};
+
+const setPlacing = (results) => {
+	let place = 1;
+	results.forEach((runner) => {
+		runner.place = place;
+		place += 1;
+	});
 };
 
 const tick = (terrain, runner, chance) => {
