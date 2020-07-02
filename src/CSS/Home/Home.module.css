@@ -1,19 +1,37 @@
 * {
-    text-align: center;
+	text-align: center;
 }
 
 .container > {
-    border: 1px solid black;
+	border: 1px solid black;
 }
 
 .container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
 }
 
 .block {
-    width: 30%;
-    border: 2px solid black;
-    margin-bottom: 25px;
+	width: 30%;
+	margin-bottom: 25px;
+	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.button {
+	flex-grow: 0;
+	width: 30%;
+	margin: 20px;
+	font-size: 130%;
+	padding: 4px;
+}
+
+.play {
+	background-color: #58d68d;
+	border: none;
+}
+
+.delete {
+	background-color: #e74c3c;
+	border: none;
 }

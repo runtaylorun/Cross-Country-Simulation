@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import UserContext from '../Context/UserContext';
 import getRosterById from '../../Scripts/IndexedDb/PlayerServices';
 import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
@@ -44,7 +44,6 @@ class LeagueDashboard extends Component {
 					<Standings leagueName={this.state.leagueName} />
 				</div>
 				<div className={classes.footer}>
-					<Link to="/">Home</Link>
 					<button onClick={() => simulateRace(this.state.leagueName)}>
 						Simulate Race
 					</button>

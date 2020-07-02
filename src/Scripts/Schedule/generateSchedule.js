@@ -1,7 +1,6 @@
-export const generateSchedule = (teams) => {
-	const weeksInSeason = 8;
+export const generateSchedule = (teams, weeksInSeason) => {
 	const leagueSchedule = initializeLeagueSchedule(weeksInSeason);
-	const weeks = [[], [], [], [], [], [], [], []];
+	const weeks = initializeWeeksArray(weeksInSeason);
 	// Until I can find the most descriptive name possible, this mapOfTeams holds a seperate map for each team to keep track of who they are already scheduled to play in a season
 	const mapOfTeams = createMapOfTeams(teams);
 	console.log('teams', teams);
@@ -131,4 +130,14 @@ const initializeLeagueSchedule = (weeksInSeason) => {
 	}
 
 	return schedule;
+};
+
+const initializeWeeksArray = (weeksInSeason) => {
+	const weeks = [];
+
+	for (let i = 0; i < weeksInSeason; i++) {
+		weeks.push([]);
+	}
+
+	return weeks;
 };

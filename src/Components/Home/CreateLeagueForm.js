@@ -7,7 +7,7 @@ const CreateLeagueForm = () => {
 	const [leagueName, setLeagueName] = useState('');
 	const [isLeagueCreated, setIsLeagueCreated] = useState(false);
 	const [teams, setTeams] = useState([]);
-	const [selectedTeam, setSelectedTeam] = useState(0);
+	const [selectedTeam, setSelectedTeam] = useState();
 
 	useEffect(() => {
 		setTeams([...Teams.Teams]);
@@ -23,7 +23,12 @@ const CreateLeagueForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await CreateLeagueDatabase(leagueName, selectedTeam);
+		let response;
+		if (selectedTeam) {
+			response = await CreateLeagueDatabase(leagueName, selectedTeam);
+		} else {
+			response = await CreateLeagueDatabase(leagueName, teams[0]);
+		}
 
 		response === 'Success'
 			? setIsLeagueCreated(true)
