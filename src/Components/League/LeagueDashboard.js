@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
 import UserContext from '../Context/UserContext';
-import getRosterById from '../../Scripts/IndexedDb/PlayerServices';
 import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
 import classes from '../../CSS/leagueDashboard.module.css';
-import Roster from './Roster';
-import { simulateRace } from '../../Scripts/Race';
 import Standings from './Standings';
 
 class LeagueDashboard extends Component {
@@ -13,7 +9,6 @@ class LeagueDashboard extends Component {
 		super(props);
 		this.state = {
 			leagueName: this.props.match.params.leagueName,
-			roster: [],
 			userTeam: {},
 		};
 	}
@@ -22,11 +17,9 @@ class LeagueDashboard extends Component {
 	async componentDidMount() {
 		const { leagueName } = this.props.match.params;
 		const userTeam = await GetUserTeam(leagueName);
-		const roster = await getRosterById(leagueName, userTeam.teamId);
 
 		this.setState({
 			leagueName: leagueName,
-			roster: roster,
 			userTeam: userTeam,
 		});
 	}
@@ -36,9 +29,6 @@ class LeagueDashboard extends Component {
 			<div className={classes.container}>
 				<div className={classes.header}>
 					<h1>{this.state.userTeam.name}</h1>
-				</div>
-				<div className={classes.roster}>
-					<Roster roster={this.state.roster} />
 				</div>
 				<div className={classes.standings}>
 					<Standings leagueName={this.state.leagueName} />
