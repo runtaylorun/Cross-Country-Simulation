@@ -1,7 +1,8 @@
 import { CreateLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
 import React, { useState, useEffect } from 'react';
 import Teams from '../../Data/Teams.json';
-import { Redirect } from 'react-router-dom';
+import classes from '../../CSS/createForm.module.css';
+import { Redirect, Link } from 'react-router-dom';
 
 const CreateLeagueForm = () => {
 	const [leagueName, setLeagueName] = useState('');
@@ -30,26 +31,37 @@ const CreateLeagueForm = () => {
 			response = await CreateLeagueDatabase(leagueName, teams[0]);
 		}
 
-		response === 'Success'
-			? setIsLeagueCreated(true)
-			: console.log('error creating league');
+		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
 	};
 
 	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />;
 
 	return (
-		<div>
+		<div className={classes.center}>
 			<h1>Create New League</h1>
-			<form onSubmit={(e) => handleSubmit(e)}>
-				<label>League Name</label>
-				<input type="text" onChange={(e) => handleChange(e)}></input>
-				<select onChange={(e) => handleTeamChange(e)}>
-					{teams.map((team) => (
-						<option value={team.teamId}>{team.name}</option>
-					))}
-				</select>
-				<button type="submit">Create</button>
+			<form className={classes.container} onSubmit={(e) => handleSubmit(e)}>
+				<div>
+					<label className={classes.label}>League Name</label>
+					<input className={classes.textBox} type='text' onChange={(e) => handleChange(e)}></input>
+				</div>
+				<div>
+					<label className={classes.label}>Select a Team</label>
+					<select className={classes.select} onChange={(e) => handleTeamChange(e)}>
+						{teams.map((team) => (
+							<option value={team.teamId}>{team.name}</option>
+						))}
+					</select>
+				</div>
+				<div>
+					<button className={classes.button} type='submit'>
+						Create
+					</button>
+					<button type='reset' className={classes.button}>
+						Clear
+					</button>
+				</div>
 			</form>
+			<Link to='/'>Go Back</Link>
 		</div>
 	);
 };

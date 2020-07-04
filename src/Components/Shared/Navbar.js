@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from '../../CSS/Navbar.module.css';
+import { simulateRace } from '../../Scripts/Race';
 import { withRouter, Link } from 'react-router-dom';
 
 const Navbar = ({ location }) => {
@@ -22,8 +23,8 @@ const Navbar = ({ location }) => {
 	return (
 		<div className={classes.nav}>
 			<div className={classes.navLeft}>
-				<Link to="/">XC Simulation</Link>
-				<p>Simulate Week</p>
+				<Link to='/'>XC Simulation</Link>
+				<p onClick={() => simulateRace(leagueName)}>Simulate Week</p>
 			</div>
 			<div className={classes.navRight}>
 				<div className={classes.dropdown}>

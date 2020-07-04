@@ -43,11 +43,7 @@ class LeagueDashboard extends Component {
 				<div className={classes.standings}>
 					<Standings leagueName={this.state.leagueName} />
 				</div>
-				<div className={classes.footer}>
-					<button onClick={() => simulateRace(this.state.leagueName)}>
-						Simulate Race
-					</button>
-				</div>
+				<div className={classes.footer}></div>
 			</div>
 		);
 	}
