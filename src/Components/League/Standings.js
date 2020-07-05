@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { GetTeams } from '../../Scripts/IndexedDb/TeamServices';
 
-const Standings = ({ leagueName }) => {
+const Standings = (props) => {
 	const [teams, setTeams] = useState([]);
+	const leagueName = props.match.params.leagueName;
 
 	useEffect(() => {
 		const getTeams = async () => {

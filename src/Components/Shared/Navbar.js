@@ -20,6 +20,7 @@ const Navbar = ({ location }) => {
 	};
 
 	const leagueName = getLeagueNameFromURL(location.pathname);
+	console.log(leagueName);
 	return (
 		<div className={classes.nav}>
 			<div className={classes.navLeft}>
@@ -31,7 +32,7 @@ const Navbar = ({ location }) => {
 					<button>League</button>
 					<div className={classes.dropdownContent}>
 						<Link to={`/league/${leagueName}`}>Home</Link>
-						<p>Standings</p>
+						<Link to={`/league/${leagueName}/standings`}>Standings</Link>
 						<p>Schedule</p>
 					</div>
 				</div>

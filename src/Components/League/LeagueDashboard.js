@@ -30,9 +30,6 @@ class LeagueDashboard extends Component {
 				<div className={classes.header}>
 					<h1>{this.state.userTeam.name}</h1>
 				</div>
-				<div className={classes.standings}>
-					<Standings leagueName={this.state.leagueName} />
-				</div>
 				<div className={classes.footer}></div>
 			</div>
 		);
