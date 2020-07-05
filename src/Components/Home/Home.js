@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import GetLeagues from '../../Scripts/IndexedDb/Retrieval';
-import { DeleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
+import { getLeagues, getLeagueCount } from '../../Scripts/IndexedDb/Retrieval';
+import { deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
 import LeagueBlock from './LeagueBlock';
 import styles from '../../CSS/Home/Home.module.css';
 
@@ -14,20 +14,20 @@ class Home extends Component {
 	}
 
 	async componentDidMount() {
-		const response = await GetLeagues();
+		const leagues = await getLeagues();
 
 		this.setState({
 			isLoaded: true,
-			leagues: response,
+			leagues: leagues,
 		});
 	}
 
-	handleLeagueDelete = async (leagueName) => {
-		const response = await DeleteLeagueDatabase(leagueName);
+	handleLeagueDeletion = async (leagueName) => {
+		const response = await deleteLeagueDatabase(leagueName);
 
 		console.log(response);
 
-		const leagues = await GetLeagues();
+		const leagues = await getLeagues();
 
 		this.setState({
 			leagues: leagues,
@@ -43,7 +43,7 @@ class Home extends Component {
 				<div className={styles.container}>
 					{leagues.map((league) => (
 						<LeagueBlock
-							deleteLeague={this.handleLeagueDelete}
+							deleteLeague={this.handleLeagueDeletion}
 							leagueName={league.name}
 						></LeagueBlock>
 					))}

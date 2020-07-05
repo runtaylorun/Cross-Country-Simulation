@@ -1,4 +1,5 @@
-import { CreateLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
+import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
+import { getLeagueCount } from '../../Scripts/IndexedDb/Retrieval';
 import React, { useState, useEffect } from 'react';
 import Teams from '../../Data/Teams.json';
 import classes from '../../CSS/createForm.module.css';
@@ -24,14 +25,17 @@ const CreateLeagueForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let response;
-		if (selectedTeam) {
-			response = await CreateLeagueDatabase(leagueName, selectedTeam);
-		} else {
-			response = await CreateLeagueDatabase(leagueName, teams[0]);
-		}
 
-		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
+		const league = {
+			leagueName: leagueName,
+			selectedTeam: selectedTeam || teams[0],
+		};
+
+		const response = await createLeagueDatabase(league);
+
+		response === 'Success'
+			? setIsLeagueCreated(true)
+			: console.log('error creating league');
 	};
 
 	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />;
@@ -42,26 +46,33 @@ const CreateLeagueForm = () => {
 			<form className={classes.container} onSubmit={(e) => handleSubmit(e)}>
 				<div>
 					<label className={classes.label}>League Name</label>
-					<input className={classes.textBox} type='text' onChange={(e) => handleChange(e)}></input>
+					<input
+						className={classes.textBox}
+						type="text"
+						onChange={(e) => handleChange(e)}
+					></input>
 				</div>
 				<div>
 					<label className={classes.label}>Select a Team</label>
-					<select className={classes.select} onChange={(e) => handleTeamChange(e)}>
+					<select
+						className={classes.select}
+						onChange={(e) => handleTeamChange(e)}
+					>
 						{teams.map((team) => (
 							<option value={team.teamId}>{team.name}</option>
 						))}
 					</select>
 				</div>
 				<div>
-					<button className={classes.button} type='submit'>
+					<button className={classes.button} type="submit">
 						Create
 					</button>
-					<button type='reset' className={classes.button}>
+					<button type="reset" className={classes.button}>
 						Clear
 					</button>
 				</div>
 			</form>
-			<Link to='/'>Go Back</Link>
+			<Link to="/">Go Back</Link>
 		</div>
 	);
 };

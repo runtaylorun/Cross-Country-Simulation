@@ -3,9 +3,9 @@ import Teams from '../../Data/Teams.json';
 import { generateSchedule } from '../Schedule/generateSchedule';
 import Courses from '../../Data/Courses.json';
 
-export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
+export const createLeagueDatabase = (league) => {
 	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(`${leagueName}`, 1);
+		let openRequest = indexedDB.open(`${league.leagueName}`, 1);
 
 		openRequest.onupgradeneeded = () => {
 			let db = openRequest.result;
@@ -33,7 +33,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			let userTransaction = db.transaction('User', 'readwrite');
 			let userStore = userTransaction.objectStore('User');
 
-			userStore.add({ ...selectedTeam });
+			userStore.add({ ...league.selectedTeam });
 
 			const schedule = generateSchedule(Teams.Teams, 8);
 
@@ -65,7 +65,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 	});
 };
 
-export const DeleteLeagueDatabase = (leagueName) => {
+export const deleteLeagueDatabase = (leagueName) => {
 	return new Promise((resolve, reject) => {
 		let request = indexedDB.deleteDatabase(leagueName);
 
@@ -81,4 +81,4 @@ export const DeleteLeagueDatabase = (leagueName) => {
 	});
 };
 
-export default CreateLeagueDatabase;
+export default createLeagueDatabase;

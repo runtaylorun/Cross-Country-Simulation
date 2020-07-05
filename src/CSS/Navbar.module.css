@@ -17,9 +17,23 @@
 	align-items: center;
 }
 
+.navLeft a {
+	text-decoration: none;
+	color: black;
+}
+
 .navLeft > * {
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.navLeft p {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.navLeft p:hover {
+	cursor: pointer;
 }
 
 .navRight {
@@ -27,6 +41,10 @@
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
+}
+
+.navRight button {
+	cursor: pointer;
 }
 
 .navRight > * {
@@ -47,7 +65,10 @@
 }
 
 .dropdown:hover .dropdownContent {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-content: center;
 }
 
 .dropdownContent {
@@ -60,7 +81,13 @@
 
 .dropdownContent a,
 p {
-	display: block;
+	margin-top: 8px;
 	text-align: left;
 	padding-left: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+a:last-child {
+	margin-bottom: 10px;
 }

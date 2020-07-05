@@ -24,7 +24,7 @@ const Navbar = ({ location }) => {
 	return (
 		<div className={classes.nav}>
 			<div className={classes.navLeft}>
-				<Link to='/'>XC Simulation</Link>
+				<Link to="/">XC Simulation</Link>
 				<p onClick={() => simulateRace(leagueName)}>Simulate Week</p>
 			</div>
 			<div className={classes.navRight}>
@@ -33,7 +33,7 @@ const Navbar = ({ location }) => {
 					<div className={classes.dropdownContent}>
 						<Link to={`/league/${leagueName}`}>Home</Link>
 						<Link to={`/league/${leagueName}/standings`}>Standings</Link>
-						<p>Schedule</p>
+						<Link to="/">Schedule</Link>
 					</div>
 				</div>
 				<div className={classes.dropdown}>
