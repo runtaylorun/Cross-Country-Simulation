@@ -8,7 +8,7 @@ const Navbar = ({ location }) => {
 		return null;
 	}
 
-	/*TODO: FIX THIS, THIS IS TERRIBLE AND HACKY*/
+	/*TODO: This could be so much better*/
 	const getLeagueNameFromURL = (path) => {
 		let firstSlashIndex = location.pathname.indexOf('/', 1) + 1;
 		let secondSlashIndex = location.pathname.indexOf('/', firstSlashIndex);
@@ -20,11 +20,10 @@ const Navbar = ({ location }) => {
 	};
 
 	const leagueName = getLeagueNameFromURL(location.pathname);
-	console.log(leagueName);
 	return (
 		<div className={classes.nav}>
 			<div className={classes.navLeft}>
-				<Link to="/">XC Simulation</Link>
+				<Link to='/'>XC Simulation</Link>
 				<p onClick={() => simulateRace(leagueName)}>Simulate Week</p>
 			</div>
 			<div className={classes.navRight}>
@@ -33,7 +32,7 @@ const Navbar = ({ location }) => {
 					<div className={classes.dropdownContent}>
 						<Link to={`/league/${leagueName}`}>Home</Link>
 						<Link to={`/league/${leagueName}/standings`}>Standings</Link>
-						<Link to="/">Schedule</Link>
+						<Link to='/'>Schedule</Link>
 					</div>
 				</div>
 				<div className={classes.dropdown}>
