@@ -70,3 +70,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### Design Choice
 
 Rather than using a backend api that communicates with a database, I decided to go with indexedDB so that the client takes care of everything and it will greatly reduce waiting times. Not only that, but it will also pretty much erase any potential upkeep costs.
+
+### Project Structure
+Components: Contains all of the code for the react components
+CSS: Contains all of the css module files
+Data: This folder basically contains some json files that hold data that is used for configuring a league. For example things like possible first and last names for runners, the teams in a league, etc... Everything in this folder eventually should be totally customizeable so that if you only want 4 teams in a league then that is possible.
+Redux: This folder might get removed because I dont think that I will end up using redux but for now this contains all of the reducers, selectors, the store, etc...
+Scripts: This folder I think is a little too generic but at the moment it just contains all of the scripts used to make the leagues function.
+
