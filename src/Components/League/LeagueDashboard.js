@@ -1,39 +1,20 @@
-import React, { Component } from 'react';
-import UserContext from '../Context/UserContext';
-import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
-import classes from '../../CSS/leagueDashboard.module.css';
-import Standings from './Standings';
+import React from 'react'
+import {useSelector} from 'react-redux'
+import {getTeam} from '../../Redux/selectors'
+import classes from '../../CSS/leagueDashboard.module.css'
 
-class LeagueDashboard extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			leagueName: this.props.match.params.leagueName,
-			userTeam: {},
-		};
-	}
-	static contextType = UserContext;
+const LeagueDashboard = () => {
 
-	async componentDidMount() {
-		const { leagueName } = this.props.match.params;
-		const userTeam = await GetUserTeam(leagueName);
+	const team = useSelector(getTeam)
 
-		this.setState({
-			leagueName: leagueName,
-			userTeam: userTeam,
-		});
-	}
-
-	render() {
-		return (
-			<div className={classes.container}>
-				<div className={classes.header}>
-					<h1>{this.state.userTeam.name}</h1>
-				</div>
-				<div className={classes.footer}></div>
+	return (
+		<div className={classes.container}>
+			<div className={classes.header}>
+				<h1>{team.name}</h1>
 			</div>
-		);
-	}
+			<div className={classes.footer}></div>
+		</div>
+	)
 }
 
-export default LeagueDashboard;
+export default LeagueDashboard

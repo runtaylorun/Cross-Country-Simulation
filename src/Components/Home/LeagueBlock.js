@@ -1,8 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import classes from '../../CSS/Home/Home.module.css';
+import React from 'react'
+import {useDispatch} from 'react-redux'
+import {setLeagueName, setRoster, setTeams} from '../../Redux/actions'
+import {getUserTeam} from '../../Scripts/IndexedDb/userServices'
+import {getRosterById} from '../../Scripts/IndexedDb/playerServices'
+import {getTeams} from '../../Scripts/IndexedDb/teamServices'
+import {setUserTeam} from '../../Redux/actions'
+import { Link } from 'react-router-dom'
+import classes from '../../CSS/Home/Home.module.css'
 
-let LeagueBlock = ({ leagueName, deleteLeague }) => {
+const LeagueBlock = ({ leagueName, deleteLeague }) => {
+
+	const dispatch = useDispatch()
+
+	const onPlayClick = async () => {
+		const team = await getUserTeam(leagueName)
+		const roster = await getRosterById(leagueName, team.teamId)
+		const teams = await getTeams(leagueName)
+		
+		dispatch(setTeams(teams ?? []))
+		dispatch(setUserTeam(team ?? {}))
+		dispatch(setRoster(roster ?? []))
+		dispatch(setLeagueName(leagueName))
+	}
+
 	return (
 		<div style={{ backgroundColor: 'white' }} className={classes.block}>
 			<h1>{leagueName}</h1>
@@ -13,7 +33,7 @@ let LeagueBlock = ({ leagueName, deleteLeague }) => {
 					justifyContent: 'space-between',
 				}}
 			>
-				<button className={classes.play + ' ' + classes.button}>
+				<button onClick={() => onPlayClick()} className={classes.play + ' ' + classes.button}>
 					<Link
 						style={{ textDecoration: 'none', color: 'black' }}
 						to={`/league/${leagueName}`}
@@ -31,7 +51,7 @@ let LeagueBlock = ({ leagueName, deleteLeague }) => {
 				</button>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default LeagueBlock;
+export default LeagueBlock

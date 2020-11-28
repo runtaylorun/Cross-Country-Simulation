@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 let Roster = ({ roster }) => {
 	return (
@@ -15,9 +15,9 @@ let Roster = ({ roster }) => {
 				</tr>
 			</thead>
 			<tbody>
-				{roster.map((runner) => {
+				{roster.map((runner, index) => {
 					return (
-						<tr>
+						<tr key={index}>
 							<td>{runner.name}</td>
 							<td>{runner.grade}</td>
 							<td>{runner.overall}</td>
@@ -26,11 +26,11 @@ let Roster = ({ roster }) => {
 							<td>{runner.hills}</td>
 							<td>{runner.durability}</td>
 						</tr>
-					);
+					)
 				})}
 			</tbody>
 		</table>
-	);
-};
+	)
+}
 
-export default Roster;
+export default Roster

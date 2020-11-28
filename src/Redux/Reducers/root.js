@@ -1,4 +1,7 @@
-import { user } from './user';
-import { combineReducers } from 'redux';
+import  teamReducer  from './team'
+import leagueReducer from './league'
+import { combineReducers } from 'redux'
 
-export const rootReducer = combineReducers(user);
+const rootReducer = combineReducers({teamReducer, leagueReducer})
+
+export default rootReducer

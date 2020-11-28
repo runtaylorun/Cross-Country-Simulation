@@ -1,49 +1,43 @@
-import React, { Component } from 'react';
-import { getLeagues, getLeagueCount } from '../../Scripts/IndexedDb/Retrieval';
-import { deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
-import LeagueBlock from './LeagueBlock';
-import styles from '../../CSS/Home/Home.module.css';
+import React, {useState, useEffect} from 'react'
+import { getLeagues} from '../../Scripts/IndexedDb/leagueServices'
+import { deleteLeague } from '../../Scripts/IndexedDb/leagueServices'
+import LeagueBlock from './LeagueBlock'
+import styles from '../../CSS/Home/Home.module.css'
 
-class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoaded: false,
-			leagues: null,
-		};
+const Home = () => {
+
+	const [isLoaded, setIsLoaded] = useState(false)
+	const [leagues, setLeagues] = useState([])
+
+	useEffect(() => {
+
+		const loadLeagues = async () => {
+			const leagues = await getLeagues()			
+			setIsLoaded(true)
+			setLeagues(leagues ?? [])		
+		}
+
+		loadLeagues()
+	}, [])
+
+	const handleLeagueDeletion = async (leagueName) => {
+		const response = await deleteLeague(leagueName)
+
+		const leagues = await getLeagues()
+
+		setLeagues(leagues ?? [])
 	}
 
-	async componentDidMount() {
-		const leagues = await getLeagues();
+	return (
 
-		this.setState({
-			isLoaded: true,
-			leagues: leagues,
-		});
-	}
-
-	handleLeagueDeletion = async (leagueName) => {
-		const response = await deleteLeagueDatabase(leagueName);
-
-		console.log(response);
-
-		const leagues = await getLeagues();
-
-		this.setState({
-			leagues: leagues,
-		});
-	};
-
-	render() {
-		const { isLoaded, leagues } = this.state;
-
-		return isLoaded ? (
+		isLoaded ? (
 			<div>
 				<h1>Cross Country Sim</h1>
 				<div className={styles.container}>
 					{leagues.map((league) => (
 						<LeagueBlock
-							deleteLeague={this.handleLeagueDeletion}
+							key={league.name}
+							deleteLeague={handleLeagueDeletion}
 							leagueName={league.name}
 						></LeagueBlock>
 					))}
@@ -54,8 +48,8 @@ class Home extends Component {
 			<div>
 				<h1>Loading...</h1>
 			</div>
-		);
-	}
+		)
+	)
 }
 
-export default Home;
+export default Home

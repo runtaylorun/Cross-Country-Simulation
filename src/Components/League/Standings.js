@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { GetTeams } from '../../Scripts/IndexedDb/TeamServices';
+import React from 'react'
+import {useSelector} from 'react-redux'
+import { getTeams} from '../../Redux/selectors'
 
-const Standings = (props) => {
-	const [teams, setTeams] = useState([]);
-	const leagueName = props.match.params.leagueName;
-
-	useEffect(() => {
-		const getTeams = async () => {
-			const response = await GetTeams(leagueName);
-
-			setTeams([...response]);
-		};
-		getTeams();
-	}, []);
+const Standings = () => {
+	const teams = useSelector(getTeams)
 
 	return (
 		<div>
 			<ul>
 				{teams.map((team) => (
-					<li>{team.name}</li>
+					<li key={team.teamId}>{team.name}</li>
 				))}
 			</ul>
 		</div>
-	);
-};
+	)
+}
 
-export default Standings;
+export default Standings
