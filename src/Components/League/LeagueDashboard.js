@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserContext from '../Context/UserContext';
 import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
 import { getSeasonInfo } from '../../Scripts/IndexedDb/SeasonServices';
 import classes from '../../CSS/leagueDashboard.module.css';
@@ -13,7 +12,6 @@ class LeagueDashboard extends Component {
 			seasonInfo: {},
 		};
 	}
-	static contextType = UserContext;
 
 	async componentDidMount() {
 		const { leagueName } = this.props.match.params;

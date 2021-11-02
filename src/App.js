@@ -1,6 +1,7 @@
 import React from 'react'
-import { UserProvider } from './Components/Context/UserContext'
+import Store from './Redux/store'
 import './App.css'
+import { Provider } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import CreateLeagueForm from './Components/Home/CreateLeagueForm'
 import LeagueDashboard from './Components/League/LeagueDashboard'
@@ -11,18 +12,12 @@ import Navbar from './Components/Shared/Navbar'
 import Schedule from './Components/League/Schedule/schedule'
 
 const App = () => {
-  const user = {
-    managedTeamId: 0
-  }
-
-  return (
-		<UserProvider value={user}>
+	return (
+		<Provider value={Store}>
 			<BrowserRouter>
 				<Navbar />
-
 				<Switch>
 					<Route exact path='/' component={Home}></Route>
-
 					<Route path='/create' component={CreateLeagueForm}></Route>
 					<Route path='/league/:leagueName' exact component={LeagueDashboard} />
 					<Route path='/league/:leagueName/standings' exact component={Standings} />
@@ -30,8 +25,8 @@ const App = () => {
 					<Route path='/league/:leagueName/teamSchedule' component={Schedule} />
 				</Switch>
 			</BrowserRouter>
-		</UserProvider>
-  )
+		</Provider>
+	)
 }
 
 export default App
