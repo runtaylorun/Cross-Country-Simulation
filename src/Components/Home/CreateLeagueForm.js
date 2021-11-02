@@ -1,9 +1,8 @@
-import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
-import { getLeagueCount } from '../../Scripts/IndexedDb/Retrieval';
 import React, { useState, useEffect } from 'react';
+import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
+import { Redirect, Link } from 'react-router-dom';
 import Teams from '../../Data/Teams.json';
 import classes from '../../CSS/createForm.module.css';
-import { Redirect, Link } from 'react-router-dom';
 
 const CreateLeagueForm = () => {
 	const [leagueName, setLeagueName] = useState('');
@@ -46,30 +45,19 @@ const CreateLeagueForm = () => {
 			<form className={classes.container} onSubmit={(e) => handleSubmit(e)}>
 				<div>
 					<label className={classes.label}>League Name</label>
-					<input
-						className={classes.textBox}
-						type="text"
-						onChange={(e) => handleChange(e)}
-					></input>
+					<input className={classes.textBox} type="text" onChange={(e) => handleChange(e)}></input>
 				</div>
 				<div>
 					<label className={classes.label}>Select a Team</label>
-					<select
-						className={classes.select}
-						onChange={(e) => handleTeamChange(e)}
-					>
+					<select className={classes.select} onChange={(e) => handleTeamChange(e)}>
 						{teams.map((team) => (
 							<option value={team.teamId}>{team.name}</option>
 						))}
 					</select>
 				</div>
 				<div>
-					<button className={classes.button} type="submit">
-						Create
-					</button>
-					<button type="reset" className={classes.button}>
-						Clear
-					</button>
+					<button className={classes.button} type="submit">Create</button>
+					<button type="reset" className={classes.button}>Clear</button>
 				</div>
 			</form>
 			<Link to="/">Go Back</Link>
