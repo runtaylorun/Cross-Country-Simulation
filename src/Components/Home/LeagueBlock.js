@@ -25,6 +25,7 @@ let LeagueBlock = ({ leagueName, deleteLeague }) => {
 					<Link
 						style={{ textDecoration: 'none', color: 'black' }}
 						onClick={() => deleteLeague(leagueName)}
+						to='/'
 					>
 						Delete
 					</Link>

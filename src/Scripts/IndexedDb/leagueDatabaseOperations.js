@@ -36,9 +36,9 @@ export const createLeagueDatabase = (league) => {
 
 			seasonStore.add({
 				year: '2010',
-				weeksLeft: '8',
-				currentWeek: '1'
-			})
+				weeksLeft: 8,
+				currentWeek: 1,
+			});
 
 			let userTransaction = db.transaction('User', 'readwrite');
 			let userStore = userTransaction.objectStore('User');

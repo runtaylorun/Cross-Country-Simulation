@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from '../../CSS/Navbar.module.css';
-import { simulateRace } from '../../Scripts/Race';
 import { withRouter, Link } from 'react-router-dom';
+import { simulateWeek } from '../../Scripts/seasonSimulation/simulateWeek';
 
 const Navbar = ({ location }) => {
 	if (location.pathname === '/' || location.pathname === '/create') {
@@ -18,13 +18,17 @@ const Navbar = ({ location }) => {
 			return path.substring(firstSlashIndex, secondSlashIndex);
 		}
 	};
-
 	const leagueName = getLeagueNameFromURL(location.pathname);
+
+	const simulate = async () => {
+		await simulateWeek(leagueName);
+	};
+
 	return (
 		<div className={classes.nav}>
 			<div className={classes.navLeft}>
 				<Link to='/'>XC Simulation</Link>
-				<p onClick={() => simulateRace(leagueName)}>Simulate Week</p>
+				<p onClick={() => simulate()}>Simulate Week</p>
 			</div>
 			<div className={classes.navRight}>
 				<div className={classes.dropdown}>

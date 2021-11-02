@@ -1,21 +1,21 @@
-import React from 'react';
-import { UserProvider } from './Components/Context/UserContext';
-import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CreateLeagueForm from './Components/Home/CreateLeagueForm';
-import LeagueDashboard from './Components/League/LeagueDashboard';
-import Roster from './Components/League/Roster/Roster';
-import Home from './Components/Home/Home';
-import Standings from './Components/League/Standings';
-import Navbar from './Components/Shared/Navbar';
-import Schedule from './Components/League/Schedule/schedule';
+import React from 'react'
+import { UserProvider } from './Components/Context/UserContext'
+import './App.css'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import CreateLeagueForm from './Components/Home/CreateLeagueForm'
+import LeagueDashboard from './Components/League/LeagueDashboard'
+import Roster from './Components/League/Roster/Roster'
+import Home from './Components/Home/Home'
+import Standings from './Components/League/Standings'
+import Navbar from './Components/Shared/Navbar'
+import Schedule from './Components/League/Schedule/schedule'
 
 const App = () => {
-	const user = {
-		managedTeamId: 0,
-	};
+  const user = {
+    managedTeamId: 0
+  }
 
-	return (
+  return (
 		<UserProvider value={user}>
 			<BrowserRouter>
 				<Navbar />
@@ -31,7 +31,7 @@ const App = () => {
 				</Switch>
 			</BrowserRouter>
 		</UserProvider>
-	);
-};
+  )
+}
 
-export default App;
+export default App
