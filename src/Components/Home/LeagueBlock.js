@@ -7,7 +7,7 @@ const LeagueBlock = ({ leagueName, deleteLeague }) => {
 		<div style={{ backgroundColor: 'white' }} className={classes.block}>
 			<h1>{leagueName}</h1>
 			<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
-				<button className={classes.play + ' ' + classes.button}>
+				<button className={`${classes.play} ${classes.button}`}>
 					<Link style={{ textDecoration: 'none', color: 'black' }} to={`/league/${leagueName}`}>Play</Link>
 				</button>
 				<button className={`${classes.delete} ${classes.button}`}>

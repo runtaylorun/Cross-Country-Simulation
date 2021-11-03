@@ -6,11 +6,11 @@ import classes from '../../../CSS/schedule.module.css';
 const Schedule = (props) => {
 	const [schedule, setSchedule] = useState();
 	const [userTeamId, setUserTeamId] = useState(0);
+	const { leagueName } = props.match.params;
+
 
 	useEffect(() => {
-		const { leagueName } = props.match.params;
-
-		const loadPageData = async () => {
+		const loadScheduleData = async () => {
 			const leagueSchedule = await getSchedule(leagueName);
 			const userTeamId = await getUserTeamId(leagueName);
 
@@ -18,21 +18,15 @@ const Schedule = (props) => {
 			setUserTeamId(userTeamId);
 		};
 
-		loadPageData();
-	}, []);
+		loadScheduleData();
+	}, [leagueName]);
 
 	const formatRaces = (schedule) => {
 		const allRaces = [];
 
-		schedule.forEach((week) => {
-			allRaces.push(...week.racesThisWeek);
-		});
+		schedule.forEach(week => allRaces.push(...week.racesThisWeek))
 
-		console.log(allRaces);
-
-		const filteredRaces = allRaces.filter(
-			(race) => race.team1.teamId === 2 || race.team2.teamId === 2
-		);
+		const filteredRaces = allRaces.filter(race => race.team1.teamId === userTeamId || race.team2.teamId === userTeamId)
 
 		return filteredRaces;
 	};
@@ -47,17 +41,16 @@ const Schedule = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{schedule &&
-						schedule.map((race) => {
-							return (
-								<tr>
-									<td>{race.week}</td>
-									<td>
-										{race.team1.name} vs {race.team2.name}
-									</td>
-								</tr>
-							);
-						})}
+					{schedule && schedule.map((race) =>
+					(
+						<tr>
+							<td>{race.week}</td>
+							<td>
+								{race.team1.name} vs {race.team2.name}
+							</td>
+						</tr>
+					)
+					)}
 				</tbody>
 			</table>
 		</div>

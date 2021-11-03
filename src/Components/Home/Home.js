@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getLeagues, getLeagueCount } from '../../Scripts/IndexedDb/Retrieval';
+import { getLeagues } from '../../Scripts/IndexedDb/Retrieval';
 import { deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
 import LeagueBlock from './LeagueBlock';
 import classes from '../../CSS/Home/Home.module.css';

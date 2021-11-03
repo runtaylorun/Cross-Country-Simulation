@@ -3,23 +3,22 @@ import { GetTeams } from '../../Scripts/IndexedDb/TeamServices';
 
 const Standings = (props) => {
 	const [teams, setTeams] = useState([]);
-	const leagueName = props.match.params.leagueName;
+	const { leagueName } = props.match.params;
 
 	useEffect(() => {
 		const getTeams = async () => {
 			const response = await GetTeams(leagueName);
 
-			setTeams([...response]);
+			setTeams([...response])
 		};
+
 		getTeams();
-	}, []);
+	}, [leagueName]);
 
 	return (
 		<div>
 			<ul>
-				{teams.map((team) => (
-					<li>{team.name}</li>
-				))}
+				{teams.map(team => <li>{team.name}</li>)}
 			</ul>
 		</div>
 	);

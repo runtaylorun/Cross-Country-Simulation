@@ -1,45 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
 import { getSeasonInfo } from '../../Scripts/IndexedDb/SeasonServices';
 import classes from '../../CSS/leagueDashboard.module.css';
 
-class LeagueDashboard extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			leagueName: this.props.match.params.leagueName,
-			userTeam: {},
-			seasonInfo: {},
-		};
-	}
+const LeagueDashboard = (props) => {
+	const [userTeam, setUserTeam] = useState({})
+	const [seasonInfo, setSeasonInfo] = useState({})
+	const { leagueName } = props.match.params;
 
-	async componentDidMount() {
-		const { leagueName } = this.props.match.params;
-		const userTeam = await GetUserTeam(leagueName);
-		const seasonInfo = await getSeasonInfo(leagueName);
+	useEffect(() => {
+		const getSeasonData = async () => {
+			const userTeam = await GetUserTeam(leagueName);
+			const seasonInfo = await getSeasonInfo(leagueName);
 
-		this.setState({
-			leagueName: leagueName,
-			userTeam: userTeam,
-			seasonInfo: seasonInfo,
-		});
-	}
+			setUserTeam(userTeam)
+			setSeasonInfo(seasonInfo)
+		}
 
-	render() {
-		return (
-			<div className={classes.container}>
-				<div className={classes.header}>
-					<div className={classes.headerGroupText}>
-						<h1>{this.state.userTeam.name}</h1>
-						<p
-							style={{ fontSize: '15px', marginBottom: '0', marginTop: '0' }}
-						>{`(Week ${this.state.seasonInfo.currentWeek})`}</p>
-					</div>
+		getSeasonData()
+	}, [])
+
+	return (
+		<div className={classes.container}>
+			<div className={classes.header}>
+				<div className={classes.headerGroupText}>
+					<h1>{userTeam.name}</h1>
+					<p style={{ fontSize: '15px', marginBottom: '0', marginTop: '0' }}>
+						{`(Week ${seasonInfo.currentWeek})`}
+					</p>
 				</div>
-				<div className={classes.footer}></div>
 			</div>
-		);
-	}
+			<div className={classes.footer}></div>
+		</div>
+	)
 }
 
 export default LeagueDashboard;

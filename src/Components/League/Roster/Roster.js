@@ -10,7 +10,7 @@ const Roster = (props) => {
 	const { leagueName } = props.match.params;
 
 	useEffect(() => {
-		const getData = async () => {
+		const getTeamData = async () => {
 			const userTeamData = await GetUserTeam(leagueName);
 			const rosterData = await getRosterById(leagueName, userTeamData.teamId);
 
@@ -18,8 +18,8 @@ const Roster = (props) => {
 			setRoster(rosterData);
 		};
 
-		getData();
-	}, []);
+		getTeamData();
+	}, [leagueName]);
 
 	return (
 		<div className={classes.container}>

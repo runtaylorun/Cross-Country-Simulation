@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Roster = ({ roster }) => {
+const Roster = ({ roster }) => {
 	return (
 		<table>
 			<thead>
@@ -15,19 +15,19 @@ let Roster = ({ roster }) => {
 				</tr>
 			</thead>
 			<tbody>
-				{roster.map((runner) => {
-					return (
-						<tr>
-							<td>{runner.name}</td>
-							<td>{runner.grade}</td>
-							<td>{runner.overall}</td>
-							<td>{runner.endurance}</td>
-							<td>{runner.speed}</td>
-							<td>{runner.hills}</td>
-							<td>{runner.durability}</td>
-						</tr>
-					);
-				})}
+				{roster.map((runner) =>
+				(
+					<tr>
+						<td>{runner.name}</td>
+						<td>{runner.grade}</td>
+						<td>{runner.overall}</td>
+						<td>{runner.endurance}</td>
+						<td>{runner.speed}</td>
+						<td>{runner.hills}</td>
+						<td>{runner.durability}</td>
+					</tr>
+				)
+				)}
 			</tbody>
 		</table>
 	);

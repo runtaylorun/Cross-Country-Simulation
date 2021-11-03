@@ -26,15 +26,13 @@ const CreateLeagueForm = () => {
 		e.preventDefault();
 
 		const league = {
-			leagueName: leagueName,
-			selectedTeam: selectedTeam || teams[0],
+			leagueName,
+			selectedTeam: selectedTeam ?? teams[0],
 		};
 
 		const response = await createLeagueDatabase(league);
 
-		response === 'Success'
-			? setIsLeagueCreated(true)
-			: console.log('error creating league');
+		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
 	};
 
 	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />;

@@ -21,7 +21,7 @@ const GenerateRoster = () => {
 	return roster;
 };
 
-const GenerateTeams = () => {};
+const GenerateTeams = () => { };
 
 const AddRosterToDatabase = (roster) => {
 	let openRequest = indexedDB.open('User');
@@ -32,7 +32,7 @@ const AddRosterToDatabase = (roster) => {
 		let transaction = db.transaction('Roster', 'readwrite');
 		let store = transaction.objectStore('Roster');
 
-		roster.forEach((runner) => store.add(runner));
+		roster.forEach(runner => store.add(runner));
 
 		return transaction.complete;
 	};
