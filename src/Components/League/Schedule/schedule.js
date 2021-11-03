@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { getSchedule } from '../../../Scripts/IndexedDb/scheduleServices';
-import { getUserTeamId } from '../../../Scripts/IndexedDb/UserServices';
-import classes from '../../../CSS/schedule.module.css';
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getLeagueName } from '../../../Redux/selectors'
+import { getSchedule } from '../../../Scripts/IndexedDb/scheduleServices'
+import classes from '../../../CSS/schedule.module.css'
 
 const Schedule = (props) => {
 	const [schedule, setSchedule] = useState();
 	const [userTeamId, setUserTeamId] = useState(0);
-	const { leagueName } = props.match.params;
+	const leagueName = useSelector(getLeagueName)
 
 
 	useEffect(() => {
@@ -14,22 +15,22 @@ const Schedule = (props) => {
 			const leagueSchedule = await getSchedule(leagueName);
 			const userTeamId = await getUserTeamId(leagueName);
 
-			setSchedule(formatRaces(leagueSchedule));
-			setUserTeamId(userTeamId);
-		};
+			setSchedule(formatRaces(leagueSchedule))
+			setUserTeamId(userTeamId)
+		}
 
 		loadScheduleData();
 	}, [leagueName]);
 
 	const formatRaces = (schedule) => {
-		const allRaces = [];
+		const allRaces = []
 
 		schedule.forEach(week => allRaces.push(...week.racesThisWeek))
 
 		const filteredRaces = allRaces.filter(race => race.team1.teamId === userTeamId || race.team2.teamId === userTeamId)
 
-		return filteredRaces;
-	};
+		return filteredRaces
+	}
 
 	return (
 		<div className={classes.container}>
@@ -43,7 +44,7 @@ const Schedule = (props) => {
 				<tbody>
 					{schedule && schedule.map((race) =>
 					(
-						<tr>
+						<tr key={race.week}>
 							<td>{race.week}</td>
 							<td>
 								{race.team1.name} vs {race.team2.name}
@@ -54,7 +55,7 @@ const Schedule = (props) => {
 				</tbody>
 			</table>
 		</div>
-	);
-};
+	)
+}
 
-export default Schedule;
+export default Schedule

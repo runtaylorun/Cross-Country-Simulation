@@ -35,4 +35,4 @@ const LeagueDashboard = (props) => {
 	)
 }
 
-export default LeagueDashboard;
+export default LeagueDashboard

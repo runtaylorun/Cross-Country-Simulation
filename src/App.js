@@ -7,7 +7,7 @@ import Home from './Components/Home/Home'
 import Standings from './Components/League/Standings'
 import Navbar from './Components/Shared/Navbar'
 import Schedule from './Components/League/Schedule/schedule'
-import './App.css'
+import Race from './Components/League/Race/Race'
 
 const App = () => {
 	return (
@@ -20,6 +20,7 @@ const App = () => {
 				<Route path='/league/:leagueName/standings' exact component={Standings} />
 				<Route path='/league/:leagueName/roster' exact component={Roster} />
 				<Route path='/league/:leagueName/teamSchedule' component={Schedule} />
+				<Route path='/league/:leagueName/race/:week' component={Race} />
 			</Switch>
 		</BrowserRouter>
 	)

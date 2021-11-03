@@ -5,37 +5,37 @@ import Teams from '../../Data/Teams.json';
 import classes from '../../CSS/createForm.module.css';
 
 const CreateLeagueForm = () => {
-	const [leagueName, setLeagueName] = useState('');
-	const [isLeagueCreated, setIsLeagueCreated] = useState(false);
-	const [teams, setTeams] = useState([]);
-	const [selectedTeam, setSelectedTeam] = useState();
+	const [leagueName, setLeagueName] = useState('')
+	const [isLeagueCreated, setIsLeagueCreated] = useState(false)
+	const [teams, setTeams] = useState([])
+	const [selectedTeam, setSelectedTeam] = useState()
 
 	useEffect(() => {
-		setTeams([...Teams.Teams]);
-	}, []);
+		setTeams([...Teams.Teams])
+	}, [])
 
 	const handleChange = (e) => {
-		setLeagueName(e.target.value);
-	};
+		setLeagueName(e.target.value)
+	}
 
 	const handleTeamChange = (e) => {
-		setSelectedTeam(teams[e.target.value - 1]);
-	};
+		setSelectedTeam(teams[e.target.value - 1])
+	}
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 
 		const league = {
 			leagueName,
 			selectedTeam: selectedTeam ?? teams[0],
 		};
 
-		const response = await createLeagueDatabase(league);
+		const response = await createLeagueDatabase(league)
 
 		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
 	};
 
-	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />;
+	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />
 
 	return (
 		<div className={classes.center}>
@@ -49,7 +49,7 @@ const CreateLeagueForm = () => {
 					<label className={classes.label}>Select a Team</label>
 					<select className={classes.select} onChange={(e) => handleTeamChange(e)}>
 						{teams.map((team) => (
-							<option value={team.teamId}>{team.name}</option>
+							<option key={team.teamId} value={team.teamId}>{team.name}</option>
 						))}
 					</select>
 				</div>
@@ -60,7 +60,7 @@ const CreateLeagueForm = () => {
 			</form>
 			<Link to="/">Go Back</Link>
 		</div>
-	);
-};
+	)
+}
 
-export default CreateLeagueForm;
+export default CreateLeagueForm

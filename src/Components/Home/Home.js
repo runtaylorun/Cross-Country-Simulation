@@ -34,6 +34,7 @@ const Home = () => {
 				<div className={classes.container}>
 					{leagues?.map((league) => (
 						<LeagueBlock
+							key={league.name}
 							deleteLeague={deleteLeague}
 							leagueName={league.name}
 						></LeagueBlock>
@@ -47,4 +48,4 @@ const Home = () => {
 	)
 }
 
-export default Home;
+export default Home
