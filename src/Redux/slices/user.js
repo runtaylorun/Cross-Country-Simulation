@@ -8,9 +8,12 @@ const userSlice = createSlice({
 	reducers: {
 		setUserId: (state, action) => {
 			state.userTeamId = action.payload
+		},
+		reset: (state, action) => {
+
 		}
 	}
 })
 
-export const { setUserId } = userSlice.actions
+export const { setUserId, reset } = userSlice.actions
 export default userSlice.reducer

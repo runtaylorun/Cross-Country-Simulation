@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
+import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices';
 import { Redirect, Link } from 'react-router-dom';
-import Teams from '../../Data/Teams.json';
+import Teams from '../../Data/teams.json';
 import classes from '../../CSS/createForm.module.css';
 
 const CreateLeagueForm = () => {
@@ -35,7 +35,7 @@ const CreateLeagueForm = () => {
 		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
 	};
 
-	if (isLeagueCreated) return <Redirect to={`/league/${leagueName}`} />
+	if (isLeagueCreated) return <Redirect to='/' />
 
 	return (
 		<div className={classes.center}>

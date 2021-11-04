@@ -2,19 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getTeams } from '../../Redux/selectors'
 
-const Standings = (props) => {
-	const [teams, setTeams] = useState([]);
-	const { leagueName } = props.match.params;
-
-	useEffect(() => {
-		const getTeams = async () => {
-			const response = await GetTeams(leagueName);
-
-			setTeams([...response])
-		};
-
-		getTeams();
-	}, [leagueName]);
+const Standings = () => {
+	const teams = useSelector(getTeams)
 
 	return (
 		<div>

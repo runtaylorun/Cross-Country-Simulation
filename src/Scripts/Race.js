@@ -1,5 +1,5 @@
 import { getRosterById } from './IndexedDb/playerServices'
-import { getCourseByTeamId } from '../Scripts/IndexedDb/courseServices'
+import { getCourseByTeamId } from './IndexedDb/courseServices'
 import moment from 'moment'
 import Chance from 'chance'
 import { flipRating } from './lib/util'

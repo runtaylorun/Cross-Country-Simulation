@@ -1,18 +1,18 @@
 import Initialize from '../init'
-import Teams from '../../Data/Teams.json'
+import Teams from '../../Data/teams.json'
 import { generateSchedule } from '../Schedule/generateSchedule'
-import Courses from '../../Data/Courses.json'
+import Courses from '../../Data/courses.json'
 
 const createLeagueDatabase = (league) => {
 	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(`${league.leagueName}`, 1)
+		const openRequest = indexedDB.open(`${league.leagueName}`, 1)
 
 		openRequest.onupgradeneeded = () => {
 			let db = openRequest.result
 
 			db.createObjectStore('Runners', { autoIncrement: true })
 			db.createObjectStore('Teams', { keyPath: 'teamId' })
-			db.createObjectStore('Season', {keyPath: 'year'})
+			db.createObjectStore('Season', { keyPath: 'year' })
 			db.createObjectStore('Courses', { keyPath: 'courseId' })
 			db.createObjectStore('Schedule', { keyPath: 'weekNumber' })
 			db.createObjectStore('User', { autoIncrement: true })
@@ -56,7 +56,7 @@ const createLeagueDatabase = (league) => {
 			let runnerStore = runnerTransaction.objectStore('Runners')
 			Teams.Teams.forEach((team) => {
 				let roster = Initialize.GenerateRoster()
-				
+
 
 				roster.forEach((runner) => {
 					console.log(roster)
@@ -65,6 +65,7 @@ const createLeagueDatabase = (league) => {
 				})
 			})
 
+			resolve('Success')
 			return runnerTransaction.complete
 		}
 
@@ -72,13 +73,12 @@ const createLeagueDatabase = (league) => {
 			console.log('There was an error with the indexedDb database')
 		}
 
-		resolve('Success')
 	})
 }
 
 const deleteLeague = (leagueName) => {
 	return new Promise((resolve, reject) => {
-		let request = indexedDB.deleteDatabase(leagueName)
+		const request = indexedDB.deleteDatabase(leagueName)
 
 		request.onsuccess = () => {
 			console.log('Database Successfully deleted')
@@ -92,26 +92,20 @@ const deleteLeague = (leagueName) => {
 	})
 }
 
-const getLeagues = () => {
+const getLeagues = async () => {
 	return new Promise((resolve, reject) => {
-		let resultArray = []
 		indexedDB.databases().then((results) => {
-			resultArray.push(results)
-			var leagueNames = resultArray[0]
-			resolve(leagueNames)
+			resolve(results)
 		})
 	})
 }
 
 const getLeagueCount = () => {
 	return new Promise((resolve, reject) => {
-		let resultArray = []
-
 		indexedDB.databases().then((results) => {
-			resultArray.push(results)
-			resolve(resultArray.length)
+			resolve(results.length)
 		})
 	})
 }
 
-export {createLeagueDatabase, deleteLeague, getLeagues, getLeagueCount}
+export { createLeagueDatabase, deleteLeague, getLeagues, getLeagueCount }

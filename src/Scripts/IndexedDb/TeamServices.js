@@ -1,19 +1,18 @@
 export const getTeams = (leagueName) => {
 	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(leagueName)
+		const openRequest = indexedDB.open(leagueName)
 
 		openRequest.onsuccess = (event) => {
-			let db = event.target.result
+			const db = event.target.result
 
-			let transaction = db.transaction('Teams', 'readwrite')
+			const transaction = db.transaction('Teams', 'readwrite')
 
-			let objectStore = transaction.objectStore('Teams')
+			const objectStore = transaction.objectStore('Teams')
 
-			let objectStoreRequest = objectStore.getAll()
+			const objectStoreRequest = objectStore.getAll()
 
 			objectStoreRequest.onsuccess = (event) => {
-				let teams = objectStoreRequest.result
-				resolve(teams)
+				resolve(objectStoreRequest.result)
 			}
 		}
 	})

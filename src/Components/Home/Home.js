@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getLeagues } from '../../Scripts/IndexedDb/Retrieval';
-import { deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
-import LeagueBlock from './LeagueBlock';
-import classes from '../../CSS/Home/Home.module.css';
+import { Link } from 'react-router-dom';
+import { getLeagues, deleteLeague as deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices';
+import LeagueBlock from './leagueBlock';
+import classes from '../../CSS/Home/home.module.css';
 
 const Home = () => {
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -40,7 +40,7 @@ const Home = () => {
 						></LeagueBlock>
 					))}
 				</div>
-				<a href="/create">New League</a>
+				<Link to='/create'>New League</Link>
 			</div> :
 			<div>
 				<h1>Loading...</h1>

@@ -1,8 +1,6 @@
 const getRosterById = (leagueName, teamId) => {
 	return new Promise((resolve, reject) => {
 		let openRequest = indexedDB.open(leagueName)
-		console.log(leagueName)
-		console.log(teamId)
 
 		openRequest.onsuccess = (event) => {
 			let db = event.target.result
@@ -21,4 +19,4 @@ const getRosterById = (leagueName, teamId) => {
 	})
 }
 
-export {getRosterById}
+export { getRosterById }

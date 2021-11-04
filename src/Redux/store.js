@@ -1,21 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { loadState, saveState } from './localstorage'
 import rootReducer from './slices/root';
-
-export default configureStore({ reducer: rootReducer, devTools: true })
-
-/* import { createStore } from 'redux'
-import rootReducer from './Reducers/root'
-import {loadState, saveState} from './localstorage'
 
 const persistedState = loadState()
 
-export const store = createStore(rootReducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = configureStore({ reducer: rootReducer, devTools: true, preloadedState: persistedState })
 
 store.subscribe(() => {
 	const state = store.getState()
 
 	saveState({
-		teamReducer: state.teamReducer,
-		leagueReducer: state.leagueReducer
+		team: state.team,
+		league: state.league,
+		user: state.user
 	})
-}) */
+})
+
+export default store
+
+
+
+
+

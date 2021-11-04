@@ -1,6 +1,5 @@
-import { Player } from '../../interfaces'
 
-const GenerateOverall = (player: Player): number => {
+const GenerateOverall = (player) => {
 	return Math.floor((player.speed + player.endurance + player.hills + (player.durability * .5)) / 4)
 }
 

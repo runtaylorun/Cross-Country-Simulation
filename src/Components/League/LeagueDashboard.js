@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { GetUserTeam } from '../../Scripts/IndexedDb/UserServices';
-import { getSeasonInfo } from '../../Scripts/IndexedDb/SeasonServices';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getTeam, getWeek } from '../../Redux/selectors';
 import classes from '../../CSS/leagueDashboard.module.css';
 
-const LeagueDashboard = (props) => {
-	const [userTeam, setUserTeam] = useState({})
-	const [seasonInfo, setSeasonInfo] = useState({})
-	const { leagueName } = props.match.params;
-
-	useEffect(() => {
-		const getSeasonData = async () => {
-			const userTeam = await GetUserTeam(leagueName);
-			const seasonInfo = await getSeasonInfo(leagueName);
-
-			setUserTeam(userTeam)
-			setSeasonInfo(seasonInfo)
-		}
-
-		getSeasonData()
-	}, [])
+const LeagueDashboard = () => {
+	const userTeam = useSelector(getTeam)
+	const leagueWeek = useSelector(getWeek)
 
 	return (
 		<div className={classes.container}>
@@ -26,7 +13,7 @@ const LeagueDashboard = (props) => {
 				<div className={classes.headerGroupText}>
 					<h1>{userTeam.name}</h1>
 					<p style={{ fontSize: '15px', marginBottom: '0', marginTop: '0' }}>
-						{`(Week ${seasonInfo.currentWeek})`}
+						{`(Week ${leagueWeek})`}
 					</p>
 				</div>
 			</div>
