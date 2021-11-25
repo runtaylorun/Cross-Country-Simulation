@@ -3,24 +3,18 @@ export const generateSchedule = (teams, weeksInSeason) => {
   const weeks = initializeWeeksArray(weeksInSeason)
   // Until I can find the most descriptive name possible, this mapOfTeams holds a seperate map for each team to keep track of who they are already scheduled to play in a season
   const mapOfTeams = createMapOfTeams(teams)
-  console.log('teams', teams)
 
   for (let i = 0; i < weeksInSeason; i++) {
     teams.forEach((team) => {
-      console.log(`Currently on ${team.name} Looking at week ${i + 1}`)
       const currentTeamsScheduledOpponents = mapOfTeams.get(team.teamId)
 
       // Checks if the current team is equal to the team at index i and moves on to the next team so that they dont schedule themselves
       if (team.teamId === teams[i].teamId) {
-        console.log(
-					`Moving to next team, ${team.name} cant schedule themselves`
-        )
         return
       }
 
       // Moves on if the currently selected team already plays this week so no team plays more than once per week
       if (teamPlaysThisWeek(team.teamId, weeks[i])) {
-        console.log(`Exited early ${team.name} already plays this week`)
         return
       }
 
@@ -30,11 +24,9 @@ export const generateSchedule = (teams, weeksInSeason) => {
         // This loop will go over each team so that we can find the next valid matchup
         while (q < weeksInSeason) {
           if (currentTeamsScheduledOpponents.has(teams[q].teamId) || teamPlaysThisWeek(team.teamId, weeks[i]) || teamPlaysThisWeek(teams[q].teamId, weeks[i]) || currentTeamAppearsOnOtherTeamsSchedule(mapOfTeams.get(teams[q].teamId), team.teamId) || team.teamId === teams[q].teamId) {
-            console.log(`${team.name} vs ${teams[q].name} is not a valid matchup`)
             q++
             continue
           } else {
-            console.log(`Adding ${team.name} vs ${teams[q].name} to the schedule`)
             const otherTeamsMap = mapOfTeams.get(teams[q].teamId)
             otherTeamsMap.set(team.teamId, team)
             leagueSchedule[i].racesThisWeek.push(createRace(team, teams[q], i + 1))
@@ -45,7 +37,6 @@ export const generateSchedule = (teams, weeksInSeason) => {
           }
         }
       } else {
-        console.log(`Adding ${team.name} vs ${teams[i].name} to the schedule`)
         const otherTeamsMap = mapOfTeams.get(teams[i].teamId)
         leagueSchedule[i].racesThisWeek.push(createRace(team, teams[i], i + 1))
         otherTeamsMap.set(team.teamId, team)
@@ -55,8 +46,6 @@ export const generateSchedule = (teams, weeksInSeason) => {
       }
     })
   }
-  console.log(weeks)
-  console.log('schedule', leagueSchedule)
 
   return leagueSchedule
 }
