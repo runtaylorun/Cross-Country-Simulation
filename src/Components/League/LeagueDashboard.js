@@ -1,13 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { getTeam, getWeek } from '../../Redux/selectors';
-import classes from '../../CSS/leagueDashboard.module.css';
+import React from 'react'
+import { Outlet } from 'react-router'
+import { useSelector } from 'react-redux'
+import { getTeam, getWeek } from '../../Redux/selectors'
+import classes from '../../CSS/leagueDashboard.module.css'
 
 const LeagueDashboard = () => {
-	const userTeam = useSelector(getTeam)
-	const leagueWeek = useSelector(getWeek)
+  const userTeam = useSelector(getTeam)
+  const leagueWeek = useSelector(getWeek)
 
-	return (
+  return (
 		<div className={classes.container}>
 			<div className={classes.header}>
 				<div className={classes.headerGroupText}>
@@ -18,8 +19,9 @@ const LeagueDashboard = () => {
 				</div>
 			</div>
 			<div className={classes.footer}></div>
+			<Outlet />
 		</div>
-	)
+  )
 }
 
 export default LeagueDashboard

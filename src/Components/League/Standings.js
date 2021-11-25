@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux'
 import { getTeams } from '../../Redux/selectors'
 
 const Standings = () => {
-	const teams = useSelector(getTeams)
+  const teams = useSelector(getTeams)
 
-	return (
+  return (
 		<div>
 			<ul>
 				{teams.map(team => <li key={team.teamId}>{team.name}</li>)}
 			</ul>
 		</div>
-	)
+  )
 }
 
 export default Standings

@@ -4,23 +4,23 @@ import { getLeagueSchedule } from '../../../Redux/selectors'
 import classes from '../../../CSS/schedule.module.css'
 
 const Schedule = () => {
-    const leagueSchedule = useSelector(getLeagueSchedule)
-    console.log(leagueSchedule)
+  const leagueSchedule = useSelector(getLeagueSchedule)
+  console.log(leagueSchedule)
 
-    return (
+  return (
         <div className={classes.container}>
             {leagueSchedule.map(week => (
-                <div>
+                <div key={week.weekNumber}>
                     <h3>{`Week ${week.weekNumber}`}</h3>
                     <ul>
                         {week.racesThisWeek.map(race => (
-                            <li>{`${race.team1.name} vs ${race.team2.name}`}</li>
+                            <li key={race.team1.name}>{`${race.team1.name} vs ${race.team2.name}`}</li>
                         ))}
                     </ul>
                 </div>
             ))}
         </div>
-    )
+  )
 }
 
 export default Schedule

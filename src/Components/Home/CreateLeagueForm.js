@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices';
-import { Redirect, Link } from 'react-router-dom';
-import Teams from '../../Data/teams.json';
-import classes from '../../CSS/createForm.module.css';
+import React, { useState, useEffect } from 'react'
+import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices'
+import { Navigate, Link } from 'react-router-dom'
+import Teams from '../../Data/teams.json'
+import classes from '../../CSS/createForm.module.css'
 
 const CreateLeagueForm = () => {
-	const [leagueName, setLeagueName] = useState('')
-	const [isLeagueCreated, setIsLeagueCreated] = useState(false)
-	const [teams, setTeams] = useState([])
-	const [selectedTeam, setSelectedTeam] = useState()
+  const [leagueName, setLeagueName] = useState('')
+  const [isLeagueCreated, setIsLeagueCreated] = useState(false)
+  const [teams, setTeams] = useState([])
+  const [selectedTeam, setSelectedTeam] = useState()
 
-	useEffect(() => {
-		setTeams([...Teams.Teams])
-	}, [])
+  useEffect(() => {
+    setTeams([...Teams.Teams])
+  }, [])
 
-	const handleChange = (e) => {
-		setLeagueName(e.target.value)
-	}
+  const handleChange = (e) => {
+    setLeagueName(e.target.value)
+  }
 
-	const handleTeamChange = (e) => {
-		setSelectedTeam(teams[e.target.value - 1])
-	}
+  const handleTeamChange = (e) => {
+    setSelectedTeam(teams[e.target.value - 1])
+  }
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-		const league = {
-			leagueName,
-			selectedTeam: selectedTeam ?? teams[0],
-		};
+    const league = {
+      leagueName,
+      selectedTeam: selectedTeam ?? teams[0]
+    }
 
-		const response = await createLeagueDatabase(league)
+    const response = await createLeagueDatabase(league)
 
-		response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league');
-	};
+    response === 'Success' ? setIsLeagueCreated(true) : console.log('error creating league')
+  }
 
-	if (isLeagueCreated) return <Redirect to='/' />
+  if (isLeagueCreated) return <Navigate to='/' />
 
-	return (
+  return (
 		<div className={classes.center}>
 			<h1>Create New League</h1>
 			<form className={classes.container} onSubmit={(e) => handleSubmit(e)}>
@@ -60,7 +60,7 @@ const CreateLeagueForm = () => {
 			</form>
 			<Link to="/">Go Back</Link>
 		</div>
-	)
+  )
 }
 
 export default CreateLeagueForm

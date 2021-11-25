@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Race = () => {
-	return (
+  return (
 		<div>
-            
+
 		</div>
-	)
+  )
 }
 
 export default Race

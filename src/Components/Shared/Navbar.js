@@ -1,23 +1,24 @@
-import React from 'react';
-import classes from '../../CSS/Navbar.module.css';
+import React from 'react'
+import classes from '../../CSS/Navbar.module.css'
 import { getLeagueName } from '../../Redux/selectors'
 /* import { simulateRace } from '../../Scripts/race' */
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router'
 /* import { simulateWeek } from '../../Scripts/seasonSimulation/simulateWeek'; */
 
-const Navbar = ({ location }) => {
-	const leagueName = useSelector(getLeagueName)
-	const { pathname } = useLocation()
+const Navbar = () => {
+  const leagueName = useSelector(getLeagueName)
+  const { pathname } = useLocation()
 
-	const simulate = async () => {
-		/* await simulateWeek(leagueName); */
-	};
+  const simulate = async () => {
+    /* await simulateWeek(leagueName); */
+  }
 
-	return (
-		(pathname === '/' || pathname === '/create' || leagueName === '') ? null :
-			<div className={classes.nav}>
+  return (
+    (pathname === '/' || pathname === '/create' || leagueName === '')
+      ? null
+      : <div className={classes.nav}>
 				<div className={classes.navLeft}>
 					<Link to='/'>XC Simulation</Link>
 					<p onClick={() => simulate()}>Simulate Week</p>
@@ -42,7 +43,7 @@ const Navbar = ({ location }) => {
 					</div>
 				</div>
 			</div>
-	)
+  )
 }
 
 export default Navbar

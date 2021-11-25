@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Roster = ({ roster }) => {
-	return (
+  return (
 		<table>
 			<thead>
 				<tr>
@@ -15,8 +16,7 @@ const Roster = ({ roster }) => {
 				</tr>
 			</thead>
 			<tbody>
-				{roster.map((runner, index) =>
-				(
+				{roster.map((runner, index) => (
 					<tr key={index}>
 						<td>{runner.name}</td>
 						<td>{runner.grade}</td>
@@ -25,12 +25,15 @@ const Roster = ({ roster }) => {
 						<td>{runner.speed}</td>
 						<td>{runner.hills}</td>
 						<td>{runner.durability}</td>
-					</tr>
-				)
+					</tr>)
 				)}
 			</tbody>
 		</table>
-	)
+  )
+}
+
+Roster.propTypes = {
+  roster: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Roster
