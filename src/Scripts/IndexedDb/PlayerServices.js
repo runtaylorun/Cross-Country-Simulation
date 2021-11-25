@@ -1,24 +1,22 @@
-export const getRosterById = (leagueName, teamId) => {
-	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(leagueName);
+const getRosterById = (leagueName, teamId) => {
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open(leagueName)
 
-		openRequest.onsuccess = (event) => {
-			let db = event.target.result;
+    openRequest.onsuccess = (event) => {
+      const db = event.target.result
 
-			let transaction = db.transaction('Runners', 'readwrite');
+      const transaction = db.transaction('Runners', 'readwrite')
 
-			let objectStore = transaction.objectStore('Runners');
+      const objectStore = transaction.objectStore('Runners')
 
-			let objectStoreRequest = objectStore.getAll();
+      const objectStoreRequest = objectStore.getAll()
 
-			objectStoreRequest.onsuccess = (event) => {
-				let roster = objectStoreRequest.result.filter(
-					(runner) => runner.teamId === teamId
-				);
-				resolve(roster);
-			};
-		};
-	});
-};
+      objectStoreRequest.onsuccess = (event) => {
+        const roster = objectStoreRequest.result.filter((runner) => runner.teamId === teamId)
+        resolve(roster)
+      }
+    }
+  })
+}
 
-export default getRosterById;
+export { getRosterById }

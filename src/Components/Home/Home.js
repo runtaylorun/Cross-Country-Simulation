@@ -1,61 +1,49 @@
-import React, { Component } from 'react';
-import GetLeagues from '../../Scripts/IndexedDb/Retrieval';
-import { DeleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueDatabaseOperations';
-import LeagueBlock from './LeagueBlock';
-import styles from '../../CSS/Home/Home.module.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { getLeagues, deleteLeague as deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices'
+import LeagueBlock from './leagueBlock'
+import classes from '../../CSS/Home/home.module.css'
 
-class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoaded: false,
-			leagues: null,
-		};
-	}
+const Home = () => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [leagues, setLeagues] = useState([])
 
-	async componentDidMount() {
-		const response = await GetLeagues();
+  const deleteLeague = async (leagueName) => {
+    await deleteLeagueDatabase(leagueName)
 
-		this.setState({
-			isLoaded: true,
-			leagues: response,
-		});
-	}
+    window.location.reload()
+  }
 
-	handleLeagueDelete = async (leagueName) => {
-		const response = await DeleteLeagueDatabase(leagueName);
+  useEffect(() => {
+    const loadLeagues = async () => {
+      const leagues = await getLeagues()
 
-		console.log(response);
+      setIsLoaded(true)
+      setLeagues(leagues)
+    }
 
-		const leagues = await GetLeagues();
+    loadLeagues()
+  }, [])
 
-		this.setState({
-			leagues: leagues,
-		});
-	};
-
-	render() {
-		const { isLoaded, leagues } = this.state;
-
-		return isLoaded ? (
-			<div>
+  return (
+    isLoaded
+      ? <div>
 				<h1>Cross Country Sim</h1>
-				<div className={styles.container}>
-					{leagues.map((league) => (
+				<div className={classes.container}>
+					{leagues?.map((league) => (
 						<LeagueBlock
-							deleteLeague={this.handleLeagueDelete}
+							key={league.name}
+							deleteLeague={deleteLeague}
 							leagueName={league.name}
 						></LeagueBlock>
 					))}
 				</div>
-				<a href="/create">New League</a>
+				<Link to='/create'>New League</Link>
 			</div>
-		) : (
-			<div>
+      : <div>
 				<h1>Loading...</h1>
 			</div>
-		);
-	}
+  )
 }
 
-export default Home;
+export default Home

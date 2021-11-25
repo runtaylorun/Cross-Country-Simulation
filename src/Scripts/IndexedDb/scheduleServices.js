@@ -1,22 +1,20 @@
 export const getSchedule = (leagueName) => {
-	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(leagueName);
-		console.log('schedule request');
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open(leagueName)
 
-		openRequest.onsuccess = (event) => {
-			let db = event.target.result;
-			console.log(db);
+    openRequest.onsuccess = (event) => {
+      const db = event.target.result
 
-			let transaction = db.transaction('Schedule', 'readwrite');
+      const transaction = db.transaction('Schedule', 'readwrite')
 
-			let objectStore = transaction.objectStore('Schedule');
+      const objectStore = transaction.objectStore('Schedule')
 
-			let objectStoreRequest = objectStore.getAll();
+      const objectStoreRequest = objectStore.getAll()
 
-			objectStoreRequest.onsuccess = (event) => {
-				let schedule = objectStoreRequest.result;
-				resolve([...schedule]);
-			};
-		};
-	});
-};
+      objectStoreRequest.onsuccess = (event) => {
+        const schedule = objectStoreRequest.result
+        resolve([...schedule])
+      }
+    }
+  })
+}

@@ -1,67 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { getSchedule } from '../../../Scripts/IndexedDb/scheduleServices';
-import { getUserTeamId } from '../../../Scripts/IndexedDb/UserServices';
-import classes from '../../../CSS/schedule.module.css';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { getLeagueSchedule } from '../../../Redux/selectors'
+import classes from '../../../CSS/schedule.module.css'
 
-const Schedule = (props) => {
-	const [schedule, setSchedule] = useState();
-	const [userTeamId, setUserTeamId] = useState(0);
+const Schedule = () => {
+  const leagueSchedule = useSelector(getLeagueSchedule)
+  console.log(leagueSchedule)
 
-	useEffect(() => {
-		const { leagueName } = props.match.params;
+  return (
+        <div className={classes.container}>
+            {leagueSchedule.map(week => (
+                <div key={week.weekNumber}>
+                    <h3>{`Week ${week.weekNumber}`}</h3>
+                    <ul>
+                        {week.racesThisWeek.map(race => (
+                            <li key={race.team1.name}>{`${race.team1.name} vs ${race.team2.name}`}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+  )
+}
 
-		const loadPageData = async () => {
-			const leagueSchedule = await getSchedule(leagueName);
-			const userTeamId = await getUserTeamId(leagueName);
-
-			setSchedule(formatRaces(leagueSchedule));
-			setUserTeamId(userTeamId);
-		};
-
-		loadPageData();
-	}, []);
-
-	const formatRaces = (schedule) => {
-		const allRaces = [];
-
-		schedule.forEach((week) => {
-			allRaces.push(...week.racesThisWeek);
-		});
-
-		console.log(allRaces);
-
-		const filteredRaces = allRaces.filter(
-			(race) => race.team1.teamId === 2 || race.team2.teamId === 2
-		);
-
-		return filteredRaces;
-	};
-
-	return (
-		<div className={classes.container}>
-			<table>
-				<thead>
-					<tr>
-						<th>Week</th>
-						<th>Opponents</th>
-					</tr>
-				</thead>
-				<tbody>
-					{schedule &&
-						schedule.map((race) => {
-							return (
-								<tr>
-									<td>{race.week}</td>
-									<td>
-										{race.team1.name} vs {race.team2.name}
-									</td>
-								</tr>
-							);
-						})}
-				</tbody>
-			</table>
-		</div>
-	);
-};
-
-export default Schedule;
+export default Schedule
