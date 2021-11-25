@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import CreateLeagueForm from './Components/Home/createleagueForm'
+import CreateLeagueForm from './Components/Home/createLeagueForm'
 import LeagueDashboard from './Components/League/leagueDashboard'
 import Roster from './Components/Team/Roster/roster'
 import Home from './Components/Home/home'
