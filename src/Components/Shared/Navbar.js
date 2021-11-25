@@ -1,49 +1,49 @@
-import React from 'react';
-import classes from '../../CSS/Navbar.module.css';
-import { withRouter, Link } from 'react-router-dom';
+import React from 'react'
+import classes from '../../CSS/Navbar.module.css'
+import { getLeagueName } from '../../Redux/selectors'
+/* import { simulateRace } from '../../Scripts/race' */
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router'
+/* import { simulateWeek } from '../../Scripts/seasonSimulation/simulateWeek'; */
 
-const Navbar = ({ location }) => {
-	if (location.pathname === '/' || location.pathname === '/create') {
-		return null;
-	}
+const Navbar = () => {
+  const leagueName = useSelector(getLeagueName)
+  const { pathname } = useLocation()
 
-	/*TODO: FIX THIS, THIS IS TERRIBLE AND HACKY*/
-	const getLeagueNameFromURL = (path) => {
-		let firstSlashIndex = location.pathname.indexOf('/', 1) + 1;
-		let secondSlashIndex = location.pathname.indexOf('/', firstSlashIndex);
-		if (secondSlashIndex === -1) {
-			return path.substring(firstSlashIndex);
-		} else {
-			return path.substring(firstSlashIndex, secondSlashIndex);
-		}
-	};
+  const simulate = async () => {
+    /* await simulateWeek(leagueName); */
+  }
 
-	const leagueName = getLeagueNameFromURL(location.pathname);
-	return (
-		<div className={classes.nav}>
-			<div className={classes.navLeft}>
-				<Link to="/">XC Simulation</Link>
-				<p>Simulate Week</p>
-			</div>
-			<div className={classes.navRight}>
-				<div className={classes.dropdown}>
-					<button>League</button>
-					<div className={classes.dropdownContent}>
-						<Link to={`/league/${leagueName}`}>Home</Link>
-						<p>Standings</p>
-						<p>Schedule</p>
+  return (
+    (pathname === '/' || pathname === '/create' || leagueName === '')
+      ? null
+      : <div className={classes.nav}>
+				<div className={classes.navLeft}>
+					<Link to='/'>XC Simulation</Link>
+					<p onClick={() => simulate()}>Simulate Week</p>
+				</div>
+				<div className={classes.navRight}>
+					<div className={classes.navRight}>
+						<div className={classes.dropdown}>
+							<button>League</button>
+							<div className={classes.dropdownContent}>
+								<Link to={`/league/${leagueName}`}>Home</Link>
+								<Link to={`/league/${leagueName}/standings`}>Standings</Link>
+								<Link to={`/league/${leagueName}/schedule`}>Schedule</Link>
+							</div>
+						</div>
+						<div className={classes.dropdown}>
+							<button>Team</button>
+							<div className={classes.dropdownContent}>
+								<Link to={`/league/${leagueName}/team/roster`}>Roster</Link>
+								<Link to={`/league/${leagueName}/team/schedule`}>Schedule</Link>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className={classes.dropdown}>
-					<button>Team</button>
-					<div className={classes.dropdownContent}>
-						<Link to={`/league/${leagueName}/roster`}>Roster</Link>
-						<Link to={`/league/${leagueName}/teamSchedule`}>Schedule</Link>
-					</div>
-				</div>
 			</div>
-		</div>
-	);
-};
+  )
+}
 
-export default withRouter(Navbar);
+export default Navbar

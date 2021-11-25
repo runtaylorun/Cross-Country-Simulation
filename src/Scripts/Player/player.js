@@ -1,28 +1,31 @@
+import { GenerateRandomNumber } from '../lib/util'
+
 class Player {
-    constructor(name) {
-        this.name = name;
-        this.grade = 9;
-        this.speed = GenerateSpeed();
-        this.endurance = GenerateEndurance();
-        this.hills = GenerateHills();
-        this.durability = GenerateDurability();
-    }
+  constructor (name) {
+    this.name = name
+    this.grade = 9
+    this.speed = GenerateSpeed()
+    this.endurance = GenerateEndurance()
+    this.hills = GenerateHills()
+    this.durability = GenerateDurability()
+    this.overall = 0
+  }
 }
 
-let GenerateSpeed = () => {
-    return 50;
+const GenerateSpeed = () => {
+  return GenerateRandomNumber(15, 45)
 }
 
-let GenerateEndurance = () => {
-    return 55;
+const GenerateEndurance = () => {
+  return GenerateRandomNumber(15, 45)
 }
 
-let GenerateHills = () => {
-    return 33;
+const GenerateHills = () => {
+  return GenerateRandomNumber(15, 45)
 }
 
-let GenerateDurability = () => {
-    return 75;
+const GenerateDurability = () => {
+  return GenerateRandomNumber(50, 80)
 }
 
-export default Player;
+export default Player

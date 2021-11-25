@@ -3,9 +3,9 @@ import Teams from '../../Data/Teams.json';
 import { generateSchedule } from '../Schedule/generateSchedule';
 import Courses from '../../Data/Courses.json';
 
-export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
+export const createLeagueDatabase = (league) => {
 	return new Promise((resolve, reject) => {
-		let openRequest = indexedDB.open(`${leagueName}`, 1);
+		let openRequest = indexedDB.open(`${league.leagueName}`, 1);
 
 		openRequest.onupgradeneeded = () => {
 			let db = openRequest.result;
@@ -13,6 +13,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 			db.createObjectStore('Runners', { autoIncrement: true });
 			db.createObjectStore('Teams', { keyPath: 'teamId' });
 			db.createObjectStore('Courses', { keyPath: 'courseId' });
+			db.createObjectStore('Season', { autoIncrement: true });
 			db.createObjectStore('Schedule', { keyPath: 'weekNumber' });
 			db.createObjectStore('User', { autoIncrement: true });
 		};
@@ -30,10 +31,19 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 
 			Courses.Courses.forEach((course) => courseStore.add(course));
 
+			let seasonTransaction = db.transaction('Season', 'readwrite');
+			let seasonStore = seasonTransaction.objectStore('Season');
+
+			seasonStore.add({
+				year: '2010',
+				weeksLeft: 8,
+				currentWeek: 1,
+			});
+
 			let userTransaction = db.transaction('User', 'readwrite');
 			let userStore = userTransaction.objectStore('User');
 
-			userStore.add({ ...selectedTeam });
+			userStore.add({ ...league.selectedTeam });
 
 			const schedule = generateSchedule(Teams.Teams, 8);
 
@@ -65,7 +75,7 @@ export const CreateLeagueDatabase = (leagueName, selectedTeam) => {
 	});
 };
 
-export const DeleteLeagueDatabase = (leagueName) => {
+export const deleteLeagueDatabase = (leagueName) => {
 	return new Promise((resolve, reject) => {
 		let request = indexedDB.deleteDatabase(leagueName);
 
@@ -81,4 +91,4 @@ export const DeleteLeagueDatabase = (leagueName) => {
 	});
 };
 
-export default CreateLeagueDatabase;
+export default createLeagueDatabase;
