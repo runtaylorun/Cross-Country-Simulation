@@ -1,41 +1,51 @@
-export const getWeek = (leagueName) => {
-  return new Promise((resolve, reject) => {
-    const openRequest = indexedDB.open(leagueName)
+export const getSeasonInfo = (leagueName) => {
+	return new Promise((resolve, reject) => {
+		let openRequest = indexedDB.open(leagueName);
 
-    openRequest.onsuccess = (event) => {
-      const db = event.target.result
+		openRequest.onsuccess = (event) => {
+			let db = event.target.result;
 
-      const transaction = db.transaction('Season', 'readwrite')
+			let transaction = db.transaction('Season', 'readwrite');
 
-      const objectStore = transaction.objectStore('Season')
+			let objectStore = transaction.objectStore('Season');
 
-      const objectStoreRequest = objectStore.getAll()
+			let objectStoreRequest = objectStore.get(1);
 
-      objectStoreRequest.onsuccess = (event) => {
-        const season = objectStoreRequest.result.sort((a, b) => b.year - a.year)[0]
-        resolve(season.week)
-      }
-    }
-  })
-}
+			objectStoreRequest.onsuccess = (event) => {
+				let season = objectStoreRequest.result;
+				resolve(season);
+			};
+		};
+	});
+};
 
-export const getSeason = (leagueName) => {
-  return new Promise((resolve, reject) => {
-    const openRequest = indexedDB.open(leagueName)
+export const incrementSeasonWeek = (leagueName) => {
+	return new Promise((resolve, reject) => {
+		let openRequest = indexedDB.open(leagueName);
 
-    openRequest.onsuccess = (event) => {
-      const db = event.target.result
+		openRequest.onsuccess = (event) => {
+			let db = event.target.result;
 
-      const transaction = db.transaction('Season', 'readwrite')
+			let transaction = db.transaction('Season', 'readwrite');
 
-      const objectStore = transaction.objectStore('Season')
+			let objectStore = transaction.objectStore('Season');
 
-      const objectStoreRequest = objectStore.getAll()
+			let objectStoreRequest = objectStore.get(1);
 
-      objectStoreRequest.onsuccess = (event) => {
-        const season = objectStoreRequest.result[objectStoreRequest.result.length - 1]
-        resolve(season)
-      }
-    }
-  })
-}
+			objectStoreRequest.onsuccess = (event) => {
+				let season = objectStoreRequest.result;
+
+				season.weeksLeft -= 1;
+				season.currentWeek += 1;
+
+				const updateSeasonRequest = objectStore.put(season, 1);
+
+				updateSeasonRequest.onsuccess = () => {
+					resolve('Week added');
+				};
+			};
+		};
+	});
+};
+
+export default getSeasonInfo;
