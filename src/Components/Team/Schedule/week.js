@@ -2,17 +2,19 @@ import React from 'react'
 import classes from '../../../CSS/schedule.module.css'
 import PropTypes from 'prop-types'
 
-const Week = ({ week, opponent }) => {
+const Week = ({ week, team1, team2, bordered }) => {
   return (
-        <div className={classes.weekContainer}>
-            <h2>{`Week ${week} Matchup`}</h2>
-            <p>{`@ ${opponent}`}</p>
+        <div style={{ border: bordered ? '1px solid orange' : 'none' }} className={classes.weekContainer}>
+            {week && <h2>{`Week ${week} Matchup`}</h2>}
+            <p>{`${team1 ?? ''} @ ${team2}`}</p>
         </div>
   )
 }
 
 Week.propTypes = {
   week: PropTypes.number,
-  opponent: PropTypes.string
+  team1: PropTypes.string,
+  team2: PropTypes.string,
+  bordered: PropTypes.bool
 }
 export default Week

@@ -2,7 +2,19 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	height: 90%;
+}
+
+.pageHeader {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin-bottom: 10px;
+}
+
+.pageHeader h2 {
+	margin: 0px;
 }
 
 .roster {

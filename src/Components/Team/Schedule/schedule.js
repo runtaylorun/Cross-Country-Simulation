@@ -12,7 +12,11 @@ const Schedule = () => {
 
   return (
 		<div className={classes.container}>
-			{teamSchedule.map(week => <Week week={week.week} key={week.week} opponent={week.team1.teamId === userTeam.teamId ? week.team2.name : week.team1.name}/>)}
+      <div className={classes.pageHeader}>
+        <h2>Team Schedule</h2>
+        <p>Check out your upcoming and past invites</p>
+      </div>
+			{teamSchedule.map(week => <Week bordered week={week.week} key={week.week} team2={week.team1.teamId === userTeam.teamId ? week.team2.name : week.team1.name}/>)}
 		</div>
   )
 }

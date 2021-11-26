@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { getLeagueSchedule } from '../../../Redux/selectors'
+import Week from '../../Team/Schedule/week'
 import classes from '../../../CSS/schedule.module.css'
 
 const LeagueSchedule = () => {
@@ -8,16 +9,17 @@ const LeagueSchedule = () => {
 
   return (
         <div className={classes.container}>
-            {leagueSchedule.map(week => (
-                <div key={week.weekNumber}>
+            <div className={classes.pageHeader}>
+                <h2>League Schedule</h2>
+                <p>See what everyone in the league is up to</p>
+            </div>
+			{leagueSchedule.map(week => (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly', width: '75%', border: '1px solid orange', margin: 10, borderRadius: 10 }} key={week.weekNumber}>
                     <h3>{`Week ${week.weekNumber}`}</h3>
-                    <ul>
-                        {week.racesThisWeek.map(race => (
-                            <li key={race.team1.name}>{`${race.team1.name} vs ${race.team2.name}`}</li>
-                        ))}
-                    </ul>
+                    {week.racesThisWeek.map(race => <Week key={race.team1.name} team1={race.team1.name} team2={race.team2.name} />)}
                 </div>
-            ))}
+			))}
+
         </div>
   )
 }

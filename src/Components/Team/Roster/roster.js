@@ -9,6 +9,10 @@ const Roster = () => {
 
   return (
 		<div className={classes.container}>
+      <div className={classes.pageHeader}>
+        <h2>Roster</h2>
+        <p>Check out your team and change your varisty lineup</p>
+      </div>
 			<RosterTable roster={roster} />
 		</div>
   )
