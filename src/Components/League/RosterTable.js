@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'
+import classes from '../../CSS/roster.module.css'
 
-let Roster = ({ roster }) => {
-	return (
-		<table>
+const RosterTable = ({ roster }) => {
+  return (
+		<table className={classes.roster}>
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -15,9 +16,9 @@ let Roster = ({ roster }) => {
 				</tr>
 			</thead>
 			<tbody>
-				{roster.map((runner) => {
-					return (
-						<tr>
+				{roster.map((runner, index) => {
+				  return (
+						<tr key={index}>
 							<td>{runner.name}</td>
 							<td>{runner.grade}</td>
 							<td>{runner.overall}</td>
@@ -26,11 +27,11 @@ let Roster = ({ roster }) => {
 							<td>{runner.hills}</td>
 							<td>{runner.durability}</td>
 						</tr>
-					);
+				  )
 				})}
 			</tbody>
 		</table>
-	);
-};
+  )
+}
 
-export default Roster;
+export default RosterTable
