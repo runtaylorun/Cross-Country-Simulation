@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { byOverall } from '../../../Scripts/lib/sort'
+import classes from '../../../CSS/roster.module.css'
 
 const Roster = ({ roster }) => {
   return (
-		<table>
+		<table className={classes.roster}>
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -16,7 +18,7 @@ const Roster = ({ roster }) => {
 				</tr>
 			</thead>
 			<tbody>
-				{roster.map((runner, index) => (
+				{[...roster].sort(byOverall).map((runner, index) => (
 					<tr key={index}>
 						<td>{runner.name}</td>
 						<td>{runner.grade}</td>

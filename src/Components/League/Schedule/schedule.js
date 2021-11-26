@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux'
 import { getLeagueSchedule } from '../../../Redux/selectors'
 import classes from '../../../CSS/schedule.module.css'
 
-const Schedule = () => {
+const LeagueSchedule = () => {
   const leagueSchedule = useSelector(getLeagueSchedule)
-  console.log(leagueSchedule)
 
   return (
         <div className={classes.container}>
@@ -23,4 +22,4 @@ const Schedule = () => {
   )
 }
 
-export default Schedule
+export default LeagueSchedule

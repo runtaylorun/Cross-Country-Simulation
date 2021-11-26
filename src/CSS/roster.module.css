@@ -1,4 +1,26 @@
 .container {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	height: 90%;
+}
+
+.roster {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	border-radius: 10px;
+	border-collapse: collapse;
+}
+
+.roster td, th {
+	padding: 10px;
+}
+
+.roster th  {
+	border-bottom: 1px solid orange;
+}
+
+.roster thead {
+	background-color: orange;
+	border-radius: 30px;
+	color: white;
 }

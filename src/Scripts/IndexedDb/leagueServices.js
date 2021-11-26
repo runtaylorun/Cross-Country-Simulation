@@ -45,7 +45,7 @@ const createLeagueDatabase = (league) => {
 
       userStore.add({ ...league.selectedTeam })
 
-      const schedule = generateSchedule(Teams.Teams, 8)
+      const schedule = generateSchedule(Teams.Teams, 7)
 
       const scheduleTransaction = db.transaction('Schedule', 'readwrite')
       const scheduleStore = scheduleTransaction.objectStore('Schedule')

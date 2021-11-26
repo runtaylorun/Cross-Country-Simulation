@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../../CSS/Navbar.module.css'
+import classes from '../../CSS/navbar.module.css'
 import { getLeagueName } from '../../Redux/selectors'
 /* import { simulateRace } from '../../Scripts/race' */
 import { useSelector } from 'react-redux'
@@ -20,24 +20,24 @@ const Navbar = () => {
       ? null
       : <div className={classes.nav}>
 				<div className={classes.navLeft}>
-					<Link to='/'>XC Simulation</Link>
-					<p onClick={() => simulate()}>Simulate Week</p>
+					<Link style={{ color: 'white' }} to='/'>XC Simulation</Link>
+					<p style={{ color: 'white' }} onClick={() => simulate()}>Simulate Week</p>
 				</div>
 				<div className={classes.navRight}>
 					<div className={classes.navRight}>
 						<div className={classes.dropdown}>
-							<button>League</button>
+							<button style={{ color: 'white' }}>League</button>
 							<div className={classes.dropdownContent}>
-								<Link to={`/league/${leagueName}`}>Home</Link>
-								<Link to={`/league/${leagueName}/standings`}>Standings</Link>
-								<Link to={`/league/${leagueName}/schedule`}>Schedule</Link>
+								<Link style={{ color: 'white' }} to={`/league/${leagueName}`}>Home</Link>
+								<Link style={{ color: 'white' }} to={`/league/${leagueName}/standings`}>Standings</Link>
+								<Link style={{ color: 'white' }} to={`/league/${leagueName}/schedule`}>Schedule</Link>
 							</div>
 						</div>
 						<div className={classes.dropdown}>
-							<button>Team</button>
+							<button style={{ color: 'white' }}>Team</button>
 							<div className={classes.dropdownContent}>
-								<Link to={`/league/${leagueName}/team/roster`}>Roster</Link>
-								<Link to={`/league/${leagueName}/team/schedule`}>Schedule</Link>
+								<Link style={{ color: 'white' }} to={`/league/${leagueName}/team/roster`}>Roster</Link>
+								<Link style={{ color: 'white' }} to={`/league/${leagueName}/team/schedule`}>Schedule</Link>
 							</div>
 						</div>
 					</div>

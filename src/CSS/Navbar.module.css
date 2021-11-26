@@ -3,7 +3,7 @@
 	flex-flow: row;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: grey;
+	background-color: orange;
 }
 
 .nav p {
@@ -76,7 +76,8 @@
 	position: absolute;
 	min-width: 140px;
 	z-index: 1;
-	background-color: white;
+	background-color: orange;
+
 }
 
 .dropdownContent a,
