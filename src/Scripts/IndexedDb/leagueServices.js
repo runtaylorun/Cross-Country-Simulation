@@ -25,7 +25,7 @@ const createLeagueDatabase = (league) => {
       const teamTransaction = db.transaction('Teams', 'readwrite')
       const teamStore = teamTransaction.objectStore('Teams')
 
-      Teams.Teams.forEach((team) => teamStore.add(team))
+      Teams.Teams.forEach((team) => teamStore.add({ ...team, wins: 0, losses: 0 }))
 
       const courseTransaction = db.transaction('Courses', 'readwrite')
       const courseStore = courseTransaction.objectStore('Courses')
@@ -59,7 +59,6 @@ const createLeagueDatabase = (league) => {
         const roster = Initialize.GenerateRoster()
 
         roster.forEach((runner) => {
-          console.log(roster)
           runner.teamId = team.teamId
           runnerStore.add(runner)
         })
