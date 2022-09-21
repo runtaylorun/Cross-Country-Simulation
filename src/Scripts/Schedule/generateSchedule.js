@@ -63,9 +63,9 @@ export const generateSchedule = (teams, weeksInSeason) => {
 
 const createRace = (team1, team2, week) => {
   return {
-    week: week,
-    team1: team1,
-    team2: team2
+    week,
+    team1,
+    team2
   }
 }
 
