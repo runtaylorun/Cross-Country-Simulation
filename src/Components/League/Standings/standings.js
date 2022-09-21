@@ -3,8 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getTeams } from '../../../redux/selectors'
 import Podium from './podium'
-import classes from '../../../CSS/schedule.module.css'
-w
+import classes from '../../../css/schedule.module.css'
 
 const Standings = () => {
   const teams = useSelector(getTeams)

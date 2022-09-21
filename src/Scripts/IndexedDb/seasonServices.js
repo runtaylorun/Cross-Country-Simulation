@@ -72,17 +72,19 @@ export const incrementSeasonWeek = (leagueName) => {
 
       const objectStore = transaction.objectStore('Season')
 
-      const objectStoreRequest = objectStore.get(1)
+      const objectStoreRequest = objectStore.get(2020)
 
       objectStoreRequest.onsuccess = (event) => {
         const season = objectStoreRequest.result
 
-        season.weeksLeft -= 1
-        season.currentWeek += 1
+        season.week += 1
 
-        const updateSeasonRequest = objectStore.put(season, 1)
+        console.log(season)
+
+        const updateSeasonRequest = objectStore.put(season)
 
         updateSeasonRequest.onsuccess = () => {
+          console.log('yee')
           resolve('Week added')
         }
       }

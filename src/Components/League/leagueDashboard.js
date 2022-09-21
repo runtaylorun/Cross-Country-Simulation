@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router'
 import { useSelector } from 'react-redux'
 import { getTeam, getWeek } from '../../redux/selectors'
-import classes from '../../CSS/leagueDashboard.module.css'
+import classes from '../../css/leagueDashboard.module.css'
 
 const LeagueDashboard = () => {
   const userTeam = useSelector(getTeam)

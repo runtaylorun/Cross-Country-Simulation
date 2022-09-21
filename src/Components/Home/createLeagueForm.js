@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { createLeagueDatabase } from '../../scripts/indexedDb/leagueServices'
 import { Navigate, Link } from 'react-router-dom'
-import Teams from '../../Data/teams.json'
-import classes from '../../CSS/createForm.module.css'
+import Teams from '../../data/teams.json'
+import classes from '../../css/createForm.module.css'
 
 const CreateLeagueForm = () => {
   const [leagueName, setLeagueName] = useState('')

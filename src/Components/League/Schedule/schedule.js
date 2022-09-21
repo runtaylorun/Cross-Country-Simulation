@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getLeagueSchedule } from '../../../redux/selectors'
 import Week from '../../team/schedule/week'
-import classes from '../../../CSS/schedule.module.css'
+import classes from '../../../css/schedule.module.css'
 
 const LeagueSchedule = () => {
   const leagueSchedule = useSelector(getLeagueSchedule)

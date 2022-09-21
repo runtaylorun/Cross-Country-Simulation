@@ -1,7 +1,7 @@
-/* import { incrementSeasonWeek } from '../IndexedDb/seasonServices'; */
+import { incrementSeasonWeek } from '../indexedDb/seasonServices'
 
-/* export const simulateWeek = async (leagueName) => {
-	await incrementSeasonWeek(leagueName);
-}; */
+export const simulateWeek = async (leagueName) => {
+  await incrementSeasonWeek(leagueName)
+}
 
-export default simulateWeek;
+export default simulateWeek

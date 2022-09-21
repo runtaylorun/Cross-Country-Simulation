@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import classes from '../../CSS/Home/home.module.css'
+import classes from '../../css/home/home.module.css'
 
 const LeagueBlock = ({ leagueName, deleteLeague }) => {
   return (

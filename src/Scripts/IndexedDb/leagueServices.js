@@ -1,7 +1,7 @@
 import Initialize from '../init'
-import Teams from '../../Data/teams.json'
+import Teams from '../../data/teams.json'
 import { generateSchedule } from '../schedule/generateSchedule'
-import Courses from '../../Data/courses.json'
+import Courses from '../../data/courses.json'
 
 const createLeagueDatabase = (league) => {
   return new Promise((resolve, reject) => {

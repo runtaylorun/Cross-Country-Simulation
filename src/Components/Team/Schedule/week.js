@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../../../CSS/schedule.module.css'
+import classes from '../../../css/schedule.module.css'
 import PropTypes from 'prop-types'
 
 const Week = ({ week, team1, team2, bordered }) => {

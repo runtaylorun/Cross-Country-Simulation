@@ -1,4 +1,4 @@
-import Names from '../Data/names.json'
+import Names from '../data/names.json'
 import Player from './player/player'
 import GenerateOverall from './player/ratingGeneration'
 import { GenerateRandomNumber } from './lib/util'

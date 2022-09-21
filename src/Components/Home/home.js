@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getLeagues, deleteLeague as deleteLeagueDatabase } from '../../scripts/indexedDb/leagueServices'
 import LeagueBlock from './leagueBlock'
-import classes from '../../CSS/Home/home.module.css'
+import classes from '../../css/home/home.module.css'
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false)

@@ -2,7 +2,7 @@ import React from 'react'
 import RosterTable from './rosterTable'
 import { useSelector } from 'react-redux'
 import { getRoster } from '../../../redux/selectors'
-import classes from '../../../CSS/roster.module.css'
+import classes from '../../../css/roster.module.css'
 
 const Roster = () => {
   const roster = useSelector(getRoster)

@@ -1,18 +1,18 @@
 import React from 'react'
-import classes from '../../CSS/navbar.module.css'
+import classes from '../../css/navbar.module.css'
 import { getLeagueName } from '../../redux/selectors'
 /* import { simulateRace } from '../../Scripts/race' */
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router'
-/* import { simulateWeek } from '../../Scripts/seasonSimulation/simulateWeek'; */
+import { simulateWeek } from '../../scripts/seasonSimulation/simulateWeek'
 
 const Navbar = () => {
   const leagueName = useSelector(getLeagueName)
   const { pathname } = useLocation()
 
   const simulate = async () => {
-    /* await simulateWeek(leagueName); */
+    await simulateWeek(leagueName)
   }
 
   return (
