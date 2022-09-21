@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from '../../CSS/navbar.module.css'
-import { getLeagueName } from '../../Redux/selectors'
+import { getLeagueName } from '../../redux/selectors'
 /* import { simulateRace } from '../../Scripts/race' */
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'

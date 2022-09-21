@@ -1,6 +1,6 @@
 import Initialize from '../init'
 import Teams from '../../Data/teams.json'
-import { generateSchedule } from '../Schedule/generateSchedule'
+import { generateSchedule } from '../schedule/generateSchedule'
 import Courses from '../../Data/courses.json'
 
 const createLeagueDatabase = (league) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { byOverall } from '../../../Scripts/lib/sort'
+import { byOverall } from '../../../scripts/lib/sort'
 import classes from '../../../CSS/roster.module.css'
 
 const Roster = ({ roster }) => {

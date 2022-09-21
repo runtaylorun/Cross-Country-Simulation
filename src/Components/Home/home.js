@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getLeagues, deleteLeague as deleteLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices'
+import { getLeagues, deleteLeague as deleteLeagueDatabase } from '../../scripts/indexedDb/leagueServices'
 import LeagueBlock from './leagueBlock'
 import classes from '../../CSS/Home/home.module.css'
 
