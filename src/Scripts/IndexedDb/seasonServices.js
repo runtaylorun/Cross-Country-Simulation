@@ -84,8 +84,7 @@ export const incrementSeasonWeek = (leagueName) => {
         const updateSeasonRequest = objectStore.put(season)
 
         updateSeasonRequest.onsuccess = () => {
-          console.log('yee')
-          resolve('Week added')
+          resolve(season.week)
         }
       }
     }

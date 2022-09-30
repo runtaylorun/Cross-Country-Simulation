@@ -24,5 +24,5 @@ const leagueSlice = createSlice({
   }
 })
 
-export const { setLeagueName, setTeams, setSchedule, setWeek, setLeagueInitialized } = leagueSlice.actions
+export const { setLeagueName, setTeams, setSchedule, setLeagueInitialized } = leagueSlice.actions
 export default leagueSlice.reducer

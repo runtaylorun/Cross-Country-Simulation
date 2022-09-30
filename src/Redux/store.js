@@ -12,7 +12,8 @@ store.subscribe(() => {
   saveState({
     team: state.team,
     league: state.league,
-    user: state.user
+    user: state.user,
+    season: state.season
   })
 })
 

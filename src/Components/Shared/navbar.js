@@ -1,8 +1,9 @@
 import React from 'react'
 import classes from '../../css/navbar.module.css'
 import { getLeagueName } from '../../redux/selectors'
+import { setWeek } from '../../redux/slices/season'
 /* import { simulateRace } from '../../Scripts/race' */
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router'
 import { simulateWeek } from '../../scripts/seasonSimulation/simulateWeek'
@@ -10,9 +11,12 @@ import { simulateWeek } from '../../scripts/seasonSimulation/simulateWeek'
 const Navbar = () => {
   const leagueName = useSelector(getLeagueName)
   const { pathname } = useLocation()
+  const dispatch = useDispatch()
 
   const simulate = async () => {
-    await simulateWeek(leagueName)
+    const newWeek = await simulateWeek(leagueName)
+
+    dispatch(setWeek(newWeek))
   }
 
   return (
