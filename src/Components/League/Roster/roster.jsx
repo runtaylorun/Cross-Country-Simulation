@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import RosterTable from '../RosterTable'
-import { GetUserTeam } from '../../../Scripts/IndexedDb/UserServices'
-import { getRosterById } from '../../../Scripts/IndexedDb/PlayerServices'
+import { useState, useEffect } from 'react'
+import RosterTable from '../rosterTable'
+import { GetUserTeam } from '../../../Scripts/IndexedDb/userServices'
+import { getRosterById } from '../../../Scripts/IndexedDb/playerServices'
 import classes from '../../../CSS/roster.module.css'
 
 const Roster = (props) => {

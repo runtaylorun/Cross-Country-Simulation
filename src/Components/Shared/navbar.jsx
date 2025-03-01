@@ -1,4 +1,3 @@
-import React from 'react'
 import classes from '../../CSS/navbar.module.css'
 import { getLeagueName } from '../../Redux/selectors'
 /* import { simulateRace } from '../../Scripts/race' */

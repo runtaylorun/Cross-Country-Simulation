@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { createLeagueDatabase } from '../../Scripts/IndexedDb/leagueServices'
 import { Navigate, Link } from 'react-router-dom'
 import Teams from '../../Data/teams.json'

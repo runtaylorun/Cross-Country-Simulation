@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CreateLeagueForm from './Components/Home/createLeagueForm'
 import LeagueDashboard from './Components/League/leagueDashboard'

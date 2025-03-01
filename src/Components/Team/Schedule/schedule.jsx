@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { getTeam, getLeagueSchedule } from '../../../Redux/selectors'
 import classes from '../../../CSS/schedule.module.css'

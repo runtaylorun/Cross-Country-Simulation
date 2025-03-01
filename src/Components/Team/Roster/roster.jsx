@@ -1,4 +1,3 @@
-import React from 'react'
 import RosterTable from './rosterTable'
 import { useSelector } from 'react-redux'
 import { getRoster } from '../../../Redux/selectors'
