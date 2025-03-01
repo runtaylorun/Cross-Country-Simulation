@@ -11,41 +11,45 @@ import { initRedux } from '../../Redux/initRedux'
 import Loading from './loading'
 
 const Interceptor = ({ children }) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
-  const initialized = useSelector(getLeagueInitialized)
-  const leagueNameFromPath = getLeagueNameFromURL(pathname)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { pathname } = useLocation()
+    const initialized = useSelector(getLeagueInitialized)
+    const leagueNameFromPath = getLeagueNameFromURL(pathname)
 
-  useEffect(() => {
-    if (pathname === '/' || pathname === '/create') {
-      dispatch(reset())
-    }
-  }, [pathname, dispatch])
-
-  useEffect(() => {
-    const initLeague = async () => {
-      if ((leagueNameFromPath !== '') && !initialized) {
-        const leagues = await getLeagues()
-
-        if (leagues.some(league => league.name === leagueNameFromPath)) {
-          await initRedux(leagueNameFromPath, dispatch)
-        } else {
-          navigate('/')
+    useEffect(() => {
+        if (pathname === '/' || pathname === '/create') {
+            dispatch(reset())
         }
-      }
-    }
+    }, [pathname, dispatch])
 
-    initLeague()
-  }, [pathname, initialized, dispatch, leagueNameFromPath])
+    useEffect(() => {
+        const initLeague = async () => {
+            if (leagueNameFromPath !== '' && !initialized) {
+                const leagues = await getLeagues()
 
-  return (
-    ((leagueNameFromPath !== '') && !initialized) ? <Loading /> : <> {children}</>
-  )
+                if (
+                    leagues.some((league) => league.name === leagueNameFromPath)
+                ) {
+                    await initRedux(leagueNameFromPath, dispatch)
+                } else {
+                    navigate('/')
+                }
+            }
+        }
+
+        initLeague()
+    }, [pathname, initialized, dispatch, leagueNameFromPath])
+
+    return leagueNameFromPath !== '' && !initialized ? (
+        <Loading />
+    ) : (
+        <> {children}</>
+    )
 }
 
 Interceptor.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node
 }
 
 export default Interceptor

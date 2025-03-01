@@ -4,4 +4,4 @@
 	await incrementSeasonWeek(leagueName);
 }; */
 
-export default simulateWeek;
+export default simulateWeek

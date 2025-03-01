@@ -1,44 +1,44 @@
 {
-	"Teams": [
-		{
-			"teamId": 1,
-			"name": "Southern Indiana",
-			"coach": "Mike Hillyard"
-		},
-		{
-			"teamId": 2,
-			"name": "Indianapolis",
-			"coach": "Jeff Gundy"
-		},
-		{
-			"teamId": 3,
-			"name": "Bellarmine",
-			"coach": "Chase Broughton"
-		},
-		{
-			"teamId": 4,
-			"name": "Southwest Baptist",
-			"coach": "Rick Fox"
-		},
-		{
-			"teamId": 5,
-			"name": "Lewis",
-			"coach": "Roger Carlson"
-		},
-		{
-			"teamId": 6,
-			"name": "Drury",
-			"coach": "Spencer Willis"
-		},
-		{
-			"teamId": 7,
-			"name": "Illinois Springfield",
-			"coach": "Tyler Pence"
-		},
-		{
-			"teamId": 8,
-			"name": "Truman State",
-			"coach": "Eric Hoffland"
-		}
-	]
+    "Teams": [
+        {
+            "teamId": 1,
+            "name": "Southern Indiana",
+            "coach": "Mike Hillyard"
+        },
+        {
+            "teamId": 2,
+            "name": "Indianapolis",
+            "coach": "Jeff Gundy"
+        },
+        {
+            "teamId": 3,
+            "name": "Bellarmine",
+            "coach": "Chase Broughton"
+        },
+        {
+            "teamId": 4,
+            "name": "Southwest Baptist",
+            "coach": "Rick Fox"
+        },
+        {
+            "teamId": 5,
+            "name": "Lewis",
+            "coach": "Roger Carlson"
+        },
+        {
+            "teamId": 6,
+            "name": "Drury",
+            "coach": "Spencer Willis"
+        },
+        {
+            "teamId": 7,
+            "name": "Illinois Springfield",
+            "coach": "Tyler Pence"
+        },
+        {
+            "teamId": 8,
+            "name": "Truman State",
+            "coach": "Eric Hoffland"
+        }
+    ]
 }

@@ -12,23 +12,41 @@ import Race from './Components/League/Race/race'
 import Interceptor from './Components/Shared/interceptor'
 
 const App = () => {
-  return (
-		<BrowserRouter>
-			<Interceptor>
-				<Navbar />
-				<Routes>
-					<Route path='/' element={<Home/>}/>
-					<Route path='create' element={<CreateLeagueForm/>}/>
-					<Route path='league/:leagueName' element={<LeagueDashboard/>} />
-					<Route path='league/:leagueName/standings' element={<Standings/>} />
-					<Route path='league/:leagueName/schedule' element={<LeagueSchedule/>} />
-					<Route path='league/:leagueName/team/roster' element={<Roster/>} />
-					<Route path='league/:leagueName/team/schedule' element={<TeamSchedule/>} />
-					<Route path='league/:leagueName/race/:week' element={<Race/>} />
-				</Routes>
-			</Interceptor>
-		</BrowserRouter>
-  )
+    return (
+        <BrowserRouter>
+            <Interceptor>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="create" element={<CreateLeagueForm />} />
+                    <Route
+                        path="league/:leagueName"
+                        element={<LeagueDashboard />}
+                    />
+                    <Route
+                        path="league/:leagueName/standings"
+                        element={<Standings />}
+                    />
+                    <Route
+                        path="league/:leagueName/schedule"
+                        element={<LeagueSchedule />}
+                    />
+                    <Route
+                        path="league/:leagueName/team/roster"
+                        element={<Roster />}
+                    />
+                    <Route
+                        path="league/:leagueName/team/schedule"
+                        element={<TeamSchedule />}
+                    />
+                    <Route
+                        path="league/:leagueName/race/:week"
+                        element={<Race />}
+                    />
+                </Routes>
+            </Interceptor>
+        </BrowserRouter>
+    )
 }
 
 export default App
